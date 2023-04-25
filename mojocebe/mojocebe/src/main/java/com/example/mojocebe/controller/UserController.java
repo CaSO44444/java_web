@@ -38,13 +38,15 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public Result register(String username, String password) {
+    public Result register(String username, String password,Integer roles) {
         User user = userService.find(username);
-        String Username = user.getUsername();
-        if (!username.equals(Username)) {
-            userService.register(username, password);
+        if (user == null){
+//            String Username = user.getUsername();
+//            if (!username.equals(Username)) {
+            userService.register(username, password, roles);
             return new Result<>().ok();
-        }
+            }
+//        }
         return new Result<>().error("用户名已存在");
     }
 }

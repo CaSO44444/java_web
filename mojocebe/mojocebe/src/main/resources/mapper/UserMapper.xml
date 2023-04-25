@@ -18,8 +18,8 @@
         <selectKey keyColumn="id" resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID() as id
         </selectKey>
-        INSERT INTO t_user(username,password,status)
-        VALUES(#{username},#{password},0)
+        INSERT INTO t_user(username,password,status,roles)
+        VALUES(#{username},#{password},0,#{roles})
     </insert>
     <select id="find" resultMap="resultMap">
         select *
