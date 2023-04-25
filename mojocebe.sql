@@ -324,4 +324,15 @@ INSERT INTO `vendor` VALUES ('11', '1', null, null, '1', '0', null, null, '0', '
 INSERT INTO `vendor` VALUES ('12', '1', null, null, '1', '0', null, null, '0', '1');
 INSERT INTO `vendor` VALUES ('13', '1', '1', '1', '1', '1', '1', '1', '1', '1');
 INSERT INTO `vendor` VALUES ('14', '1', '1', '1', '1', '1', '1', '1', '1', '1');
-INSERT INTO `vendor` VALUES ('15', '甲甲', '甲', '6级', '0', '22', '江西', '十陵街道成都大学', '2', '1');
+INSERT INTO `vendor` VALUES ('15', '甲甲', '甲', '6级', '0', '22', '江西', '二仙桥成都理工大学', '2', '1');
+
+CREATE TABLE `news`
+(
+    `Title`     varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    `Publisher` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `Pub_time`  date                                                   DEFAULT NULL,
+    `Origin`    varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    `Times`     int                                                    DEFAULT NULL,
+    `file`      varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+    PRIMARY KEY (`Title`) USING BTREE
+)
