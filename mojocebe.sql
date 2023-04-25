@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : MySQL80
+Source Server         : MySQL50
 Source Server Version : 80029
 Source Host           : localhost:3306
 Source Database       : mojocebe
