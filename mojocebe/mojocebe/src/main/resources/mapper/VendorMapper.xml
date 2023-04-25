@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mojocebe.mapper.VendorMapper">
+    <resultMap id="followResultMap" type="vendor">
+        <id property="vendor_id" column="vendor_id"/>
+        <result property="type" column="type"/>
+        <result property="vendor_name" column="vendor_name"/>
+        <result property="level" column="level"/>
+        <result property="status" column="status"/>
+        <result property="num" column="num"/>
+        <result property="province" column="province"/>
+        <result property="address" column="address"/>
+
+        <association property="manager" javaType="com.example.mojocebe.entity.Manager">
+            <result property="manager_id" column="manager_id"/>
+            <result property="manager_name" column="manager_name"/>
+        </association>
+        <association property="doctor" javaType="com.example.mojocebe.entity.Doctor">
+            <result property="doctor_id" column="doctor_id"/>
+            <result property="doctor_name" column="doctor_name"/>
+        </association>
+    </resultMap>
+    <select id="queryall" resultMap="followResultMap">
+        SELECT v.*,d.*,m.*
+        FROM vendor v join manager m on v.manager=m.manager_id join doctor d on d.doctor_id = v.doctor
+                                                                                    and v.status=0
+    </select>
+
+    <insert id="add" parameterType="vendor">
+        insert into vendor(type,vendor_name,level,status,num,province,address,manager,doctor )
+        values (#{type},#{vendor_name},#{level},#{status},#{num},#{province},#{address},#{manager.manager_id},#{doctor.doctor_id})
+    </insert>
+
+    <select id="getById" parameterType="int" resultMap="followResultMap">
+        SELECT v.*,d.*,m.*
+        FROM vendor v join manager m on v.manager=m.manager_id join doctor d on d.doctor_id = v.doctor
+        where vendor_id=#{id}
+    </select>
+    <update id="update" parameterType="vendor">
+        update vendor set  type=#{type},vendor_name=#{vendor_name},
+                           level=#{level},status=#{status},num=#{num},province=#{province},
+                           address=#{address},manager=#{manager.manager_id},doctor=#{doctor.doctor_id},
+        where vendor_id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="int">
+        update  vendor
+        set status=1
+        where
+            id=#{id}
+    </delete>
+
+    <delete id="batchDelete">
+        update vendor
+        set status=1
+        where vendor_id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

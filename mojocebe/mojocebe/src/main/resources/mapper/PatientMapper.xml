@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mojocebe.mapper.PatientMapper">
+    <resultMap id="patientResultMap" type="com.example.mojocebe.entity.Patient">
+        <id property="id" column="id"></id>
+        <result property="name" column="name"></result>
+        <result property="gender" column="gender"></result>
+        <result property="age" column="age"></result>
+        <result property="tel" column="tel"></result>
+        <result property="id_card" column="id_card"></result>
+        <result property="address" column="address"></result>
+        <result property="doctor.doctor_id" column="doctor_id"></result>
+        <result property="doctor.doctor_name" column="doctor_name"></result>
+        <result property="follow" column="follow"></result>
+        <result property="status" column="status"></result>
+    </resultMap>
+    <select id="queryall"  resultMap="patientResultMap">
+        SELECT p.id ,p.name,p.gender,p.age,p.tel,p.id_card,p.address,p.follow,p.status,
+               d.doctor_id,d.doctor_name as doctor_name
+        FROM patient p, doctor d
+        WHERE p.doctor =d.doctor_id and p.status=0
+    </select>
+
+    <insert id="add" parameterType="reservation">
+        insert into patient(name,gender,age,tel,id_card,address,doctor,follow,status)
+        values (#{name},#{gender},#{age},#{tel},#{id_card},#{address},#{doctor.doctor_id},#{follow},#{status})
+    </insert>
+
+    <update id="update" parameterType="patient">
+        UPDATE reservation SET name=#{name},gender=#{gender},age=#{age},tel=#{tel},id_card=#{id_card},address=#{address},doctor=#{doctor_id
+        },follow=#{follow} WHERE id=#{id}
+    </update>
+
+    <select id="find" resultMap="patientResultMap">
+        SELECT r.id ,r.name,r.gender,r.age,r.tel,r.id_card,r.address,d.doctor_id,
+               d.doctor_name as doctorname,r.follow,r.status
+        FROM patient r, doctor d
+        WHERE r.doctor =d.doctor_id and id=#{id}
+    </select>
+
+
+
+    <delete id="delete" parameterType="int">
+        update  patient
+        set status=1
+        where
+            id=#{id}
+    </delete>
+
+    <delete id="BatchRemove">
+        update patient
+        set status=1
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mojocebe.mapper.FollowMapper">
+    <resultMap id="followResultMap" type="follow">
+        <id property="id" column="id"/>
+        <result property="type" column="type"/>
+        <result property="title" column="title"/>
+        <result property="follow_date" column="follow_date"/>
+        <result property="next_follow" column="next_follow"/>
+        <result property="status" column="status"/>
+        <association property="patient" javaType="com.example.mojocebe.entity.Patient">
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+            <collection property="doctor" ofType="com.example.mojocebe.entity.Doctor">
+                <result property="doctor_id" column="doctor_id"/>
+                <result property="doctor_name" column="doctor_name"/>
+            </collection>
+        </association>
+
+    </resultMap>
+    <select id="queryall" resultMap="followResultMap">
+        SELECT f.*,d.*,p.*
+        FROM follow f join patient p on f.patient=p.id join doctor d on d.doctor_id = p.doctor and f.status=0
+    </select>
+
+    <insert id="add" parameterType="follow">
+        insert into follow(type,title,patient,doctor,follow_date,next_follow,status)
+        values (#{type},#{title},#{patient.id},#{doctor.doctor_id},#{follow_date},#{next_follow},#{status})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        update  follow
+        set status=1
+        where
+            id=#{id}
+    </delete>
+
+    <delete id="BatchRemove">
+        update follow
+        set status=1
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="edit" parameterType="follow">
+        UPDATE follow SET type=#{type},title=#{title},patient=#{patient.id},doctor=#{doctor.doctor_id},follow_date=#{follow_date},next_follow=#{next_follow},status=#{status}
+                      WHERE id=#{id}
+    </update>
+
+    <select id="find" resultMap="followResultMap">
+        SELECT f.*,d.*,p.*
+        FROM follow f join patient p on f.patient=p.id join doctor d on d.doctor_id = p.doctor
+        and id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../component/pear/css/pear.css" />
+</head>
+<body>
+<form class="layui-form" lay-filter="layItem"-f action="">
+    <div class="mainBox">
+        <div class="main-container">
+
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">轮播标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">跳转连接</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">广告位置</label>
+                <div class="layui-input-block">
+                    <select name="position" lay-filter="aihao" >
+                        <option value=""></option>
+                        <option value="index" selected="">首页</option>
+                        <option value="goods" >商品详情页</option>
+                        <option value="login">登录页</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test1">上传图片</button>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="demo1" style="width: 200px;height: 150px">
+                    <p id="demoText"></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="user-save">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<script src="../../../component/layui/layui.js"></script>
+<script src="../../../component/pear/pear.js"></script>
+<script charset="utf-8" src="../../js/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="../../../component/layui/base.js"></script>
+<script>
+
+    //获取url后面携带的参数
+    let id=getQueryVariable("id");
+
+layui.use(['form','jquery','upload',],function(){
+    let form = layui.form;
+    let $ = layui.jquery;
+    let upload = layui.upload;
+
+
+    //普通图片上传
+    var uploadInst = upload.render({
+        elem: '#test1'
+        ,url: 'http://www.j236.com/admin/upload/image' //改成您自己的上传接口
+        ,field:"uploadFile"
+        ,before: function(obj){
+            //预读本地文件示例，不支持ie8
+            obj.preview(function(index, file, result){
+                $('#demo1').attr('src', result); //图片链接（base64）
+            });
+        }
+        ,done: function(res){
+            //如果上传失败
+            if(res.code > 0){
+                return layer.msg('上传失败');
+            }
+            //上传成功
+            $(".layui-form").append("<input  class='image' type='hidden' name='image' value='"+res.url+"'>");
+        }
+    });
+
+    //回显数据
+    $.ajax({
+        url:'http://www.j236.com/admin/banner/'+id,
+        method:"GET",
+        success:function(obj){
+
+            let data=obj.data;
+
+            //layui表单赋值回显
+            form.val("layItem", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+                title:data.title,
+                position:data.position,
+                url:data.url
+
+            });
+
+            //回显图片
+            let image=obj.data.image;
+            if(image){
+                sessionStorage.setItem("image",image)
+                $('#demo1').attr("src",image)
+
+            }
+        }
+    });
+
+    form.on('submit(user-save)', function(data){
+
+
+
+        if( $(".image").length>0){
+           //如果修改了图片就获取隐藏域
+            data.field.image= $(".image").val();
+        }else{
+            //如果没有修改图片获取临时存储的图片地址
+            data.field.image=sessionStorage.getItem("image");
+            sessionStorage.removeItem("sessionStorage")
+        }
+        data.field.id=id;
+
+
+        console.info(data.field);
+
+        $.ajax({
+            url:'http://www.j236.com/admin/banner/update',
+            data:data.field,
+            type:'post',
+            success:function(result){
+                if(result.code==0){
+                    layer.msg(result.msg,{icon:1,time:1000},function(){
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                        window.parent.location.reload()
+                    });
+                }else{
+                    layer.msg(result.msg,{icon:2,time:1000});
+                }
+            }
+        })
+        return false;
+    });
+})
+</script>
+<script>
+</script>
+</body>
+</html>

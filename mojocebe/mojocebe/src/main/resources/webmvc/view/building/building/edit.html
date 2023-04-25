@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../component/pear/css/pear.css" />
+    <style type="text/css">
+        input.layui-input.layui-unselect {width:200px}
+    </style>
+</head>
+<body>
+<form class="layui-form" lay-filter="layItem" action="">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">栋数名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">总户数</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="num" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">所属小区</label>
+                    <div class="layui-input-block">
+                        <select id="villageId" name="villageId" lay-filter="aihao" >
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">描述</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="description" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="user-save">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<script src="../../../component/layui/layui.js"></script>
+<script src="../../../component/pear/pear.js"></script>
+<script type="text/javascript" src="../../../component/layui/base.js"></script>
+
+<script>
+layui.use(['form','jquery','upload'],function(){
+    let form = layui.form;
+    let $ = layui.jquery;
+
+
+    //获取url后面携带的参数
+    let id=getQueryVariable("id");
+
+
+    $.ajax({
+        url:'http://localhost:8080/sunshine/village/findAll',
+        type:'get',
+        success:function(result){
+            if(result.code==0){
+
+                //result.data 小区列表
+                var data=result.data;
+
+                $.each(data,function (index,village) {
+                    $("#villageId").append("<option value='"+village.id+"'>"+village.name+"</option>")
+
+                })
+                //重新渲染下拉框
+                layui.form.render("select")
+
+                //回显数据
+                $.ajax({
+                    url:'http://localhost:8080/sunshine/building/find?id='+id,
+                    method:"GET",
+                    success:function(obj){
+
+                        let data=obj.data;
+
+                        //layui表单赋值回显
+
+                        form.val("layItem", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+                            id:id,
+                            name:data.name,
+                            num:data.num,
+                            villageId:data.villageId,
+                            description:data.description,
+
+                        });
+
+                        $("#villageId option").each(function(index,option) {
+                            // 判断需要对那个选项进行回显
+
+                            if (option.value == data.villageId) {
+                                console.log($(this).text());
+                                // 进行回显
+                                $(this).attr("selected","selected");
+                                //重新渲染下拉框
+                                layui.form.render("select")
+                            }
+                        });
+
+
+
+                    }
+                });
+
+
+            }else{
+                layer.msg(result.msg,{icon:2,time:1000});
+            }
+        }
+    })
+
+
+
+
+    form.on('submit(user-save)', function(data){
+
+
+        //设置修改的id
+        data.field.id=id;
+
+        $.ajax({
+            url:'http://localhost:8080/sunshine/building/update',
+            data:JSON.stringify(data.field),
+            dataType:'json',
+            contentType:'application/json',
+            type:'post',
+            success:function(result){
+                if(result.code==0){
+                    layer.msg(result.msg,{icon:1,time:1000},function(){
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                        window.parent.location.reload()
+                    });
+                }else{
+                    layer.msg(result.msg,{icon:2,time:1000});
+                }
+            }
+        })
+        return false;
+    });
+})
+</script>
+<script>
+</script>
+</body>
+</html>

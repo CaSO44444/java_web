@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mojocebe.mapper.ReservationMapper">
+    <resultMap id="reservationResultMap" type="com.example.mojocebe.entity.Reservation">
+        <id property="id" column="id"></id>
+        <result property="doctorName" column="doctorname"></result>
+        <result property="day" column="day"></result>
+        <result property="size" column="size"></result>
+        <result property="status" column="status"></result>
+        <result property="dept.dept_id" column="dept_id"></result>
+        <result property="dept.dept_name" column="dept_name"></result>
+        <result property="title.title_id" column="title_id"></result>
+        <result property="title.title_name" column="title_name"></result>
+    </resultMap>
+<select id="queryall" resultMap="reservationResultMap">
+    SELECT r.id ,r.doctorname,r.day,r.size,r.status,
+           d.dept_id,d.dept_name as dept_name,r.title,t.title_id,t.title_name as title_name
+    FROM reservation r, dept d, title t
+    WHERE r.dept =d.dept_id AND r.title =t.title_id and r.status=0
+</select>
+    <insert id="add" parameterType="reservation">
+        insert into reservation(doctorname,dept,title,day,size,status)
+        values (#{doctorName},#{dept.dept_id},#{title.title_id},#{day},#{size},#{status})
+    </insert>
+
+    <delete id="delete" parameterType="int">
+        update reservation
+        set status=1
+        where
+        id=#{id}
+    </delete>
+
+    <delete id="BatchRemove">
+        update reservation
+        set status=1
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+        #{id}
+    </foreach>
+</delete>
+    <select id="getById" resultMap="reservationResultMap">
+        SELECT r.id ,r.doctorname,r.day,r.size,r.status,
+               d.dept_id,d.dept_name as dept_name,r.title,t.title_id,t.title_name as title_name
+        FROM reservation r, dept d, title t
+        WHERE r.dept =d.dept_id AND r.title =t.title_id and id=#{id}
+    </select>
+  <update id="update" parameterType="reservation">
+      UPDATE reservation SET doctorname=#{doctorName},dept_id=#{dept.dept_id},title_id=#{title.title_id},day=#{day},size=#{size},status=#{status} WHERE id=#{id}
+  </update>
+</mapper>

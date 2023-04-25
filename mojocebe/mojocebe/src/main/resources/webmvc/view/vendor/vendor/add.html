@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../component/pear/css/pear.css" />
+</head>
+<body>
+<form class="layui-form" action="">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">类型：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="type" lay-verify="required" autocomplete="off" placeholder="请输入医生姓名" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">供应商名称：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="vendor_name" lay-verify="required" autocomplete="off" placeholder="请输入医生姓名" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">级别：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="level" lay-verify="required" autocomplete="off" placeholder="请输入最大人数" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">员工人数</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="num" required  lay-verify="required" placeholder="请输入天数" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">省市</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="province" lay-verify="required" autocomplete="off" placeholder="请输入最大人数" class="layui-input">
+                        </div>
+                    </div>  
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">详细地址：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="address" lay-verify="required" autocomplete="off" placeholder="请输入最大人数" class="layui-input">
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">联系人：</label>
+                        <div class="layui-input-block">
+                            <select id="doctorId" name="doctorId" lay-filter="aihao" >
+                                <option value=""></option>
+                            </select>
+                    </div>  
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label">负责人</label>
+                        <div class="layui-input-block">
+                            <select id="managerId" name="managerId" lay-filter="aihao" >
+                                <option value=""></option>
+                            </select>
+                    </div>  
+                </div>
+
+                
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="reservation-save">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<script src="../../../component/layui/layui.js"></script>
+<script src="../../../component/pear/pear.js"></script>
+
+
+<script>
+layui.use(['form','jquery','upload','dtree'],function(){
+    let form = layui.form;
+    let $ = layui.jquery;
+    let upload = layui.upload;
+
+    $.ajax({
+        url:'http://localhost:8080/doctor/query',
+        type:'get',
+        beforeSend: function(request) {
+            request.setRequestHeader("token", localStorage.getItem("token"));
+        },
+        success:function(result){
+            if(result.code==0){
+
+                //result.data 小区列表
+                var data=result.data;
+
+                $.each(data,function (index,doctor) {
+                    $("#doctorId").append("<option value='"+doctor.doctor_id+"'>"+doctor.doctor_name+"</option>")
+
+                })
+                //重新渲染下拉框
+                layui.form.render("select")
+
+            }else{
+                layer.msg(result.msg,{icon:2,time:1000});
+            }
+        }
+    })
+
+    $.ajax({
+        url:'http://localhost:8080/manager/query',
+        type:'get',
+        beforeSend: function(request) {
+            request.setRequestHeader("token", localStorage.getItem("token"));
+        },
+        success:function(result){
+            if(result.code==0){
+
+                //result.data 小区列表
+                var data=result.data;
+
+                $.each(data,function (index,manager) {
+                    $("#managerId").append("<option value='"+manager.manager_id+"'>"+manager.manager_name+"</option>")
+
+                })
+                //重新渲染下拉框
+                layui.form.render("select")
+
+            }else{
+                layer.msg(result.msg,{icon:2,time:1000});
+            }
+        }
+    })
+   
+
+
+    form.on('submit(reservation-save)', function(data){
+
+        $.ajax({
+            url:'http://localhost:8080/vendor/add',
+            data:JSON.stringify(data.field),
+            dataType:'json',
+            contentType:'application/json',
+            type:'post',
+            success:function(result){
+                if(result.code==0){
+                    layer.msg(result.msg,{icon:1,time:1000},function(){
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                        window.parent.location.reload()
+                    });
+                }else{
+                    layer.msg(result.msg,{icon:2,time:1000});
+                }
+            }
+        })
+        return false;
+    });
+})
+</script>
+<script>
+</script>
+</body>
+</html>

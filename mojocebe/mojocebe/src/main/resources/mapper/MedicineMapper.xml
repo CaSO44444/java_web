@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mojocebe.mapper.MedicineMapper">
+    <resultMap id="medicineResultMap" type="medicine">
+        <id property="medicine_id" column="medicine_id"/>
+        <result property="medicine_name" column="medicine_name"/>
+        <result property="medicine_card" column="medicine_card"/>
+        <result property="model" column="model"/>
+        <result property="price" column="price"/>
+        <result property="medicine_num" column="medicine_num"/>
+        <result property="unit" column="unit"></result>
+        <result property="status" column="status"></result>
+        <association property="medicineType" javaType="com.example.mojocebe.entity.MedicineType">
+            <result property="type_id" column="type_id"/>
+            <result property="type_name" column="type_name"/>
+        </association>
+        <association property="vendor" javaType="com.example.mojocebe.entity.Vendor">
+            <result property="vendor_id" column="vendor_id"/>
+            <result property="vendor_name" column="vendor_name"/>
+            <collection property="manager" ofType="com.example.mojocebe.entity.Manager">
+                <result property="manager_id" column="manager_id"/>
+                <result property="manager_name" column="manager_name"/>
+            </collection>
+        </association>
+
+    </resultMap>
+    <select id="queryall" resultMap="medicineResultMap">
+        select m.*,t.*,v.*,ma.*
+        from medicine m join vendor v on m.vendor=v.vendor_id join manager ma on v.manager=ma.manager_id
+                        join medicinetype t on m.type=t.type_id and m.status=0
+    </select>
+
+    <delete id="deleteById" parameterType="int">
+        update  medicine
+        set status=1
+        where
+            medicine_id=#{id}
+    </delete>
+
+    <delete id="batchDelete">
+        update medicine
+        set status=1
+        where medicine_id in
+        <foreach collection="ids" item="medicine_id" open="(" close=")" separator=",">
+            #{medicine_id}
+        </foreach>
+    </delete>
+
+    <insert id="add" parameterType="medicine">
+    insert into medicine(type,medicine_name,medicine_card,model,price,medicine_num,unit,manager,vendor,status)
+    values (#{medicineType.type_id},#{medicine_name},#{medicine_card},#{model},#{price},#{medicine_num},#{unit},#{manager.manager_id},
+            #{vendor.vendor_id},#{status})
+    </insert>
+
+    <select id="getById" parameterType="int" resultMap="medicineResultMap">
+        select m.*,t.*,v.*,ma.*
+        from medicine m join vendor v on m.vendor=v.vendor_id join manager ma on v.manager=ma.manager_id
+                        join medicinetype t on m.type=t.type_id
+        where medicine_id=#{id}
+    </select>
+
+    <update id="edit" parameterType="com.example.mojocebe.entity.Medicine">
+        update medicine set
+                            type=#{medicineType.type_id},medicine_name=#{medicine_name},medicine_card=#{medicine_card},model=
+                                #{model},price=#{price},medicine_num=#{medicine_num},unit=#{unit},manager=#{manager.manager_id},vendor=#{vendor.vendor_id}
+                                status=#{status}
+        where medicine_id = #{medicine_id}
+    </update>
+</mapper>

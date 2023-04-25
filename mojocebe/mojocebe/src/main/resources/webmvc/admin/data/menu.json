@@ -1,0 +1,119 @@
+[
+	{
+		"id": 1,
+		"title": "首页",
+		"type": 0,
+		"icon": "layui-icon layui-icon-console",
+		"href": "",
+		"children": [{
+			"id": 10,
+			"title": "首页",
+			"icon": "layui-icon layui-icon-console",
+			"type": 1,
+			"openType": "_iframe",
+			"href": "view/console/console1.html"
+		}]
+	},
+	{
+		"id": "system",
+		"title": "预约管理",
+		"icon": "layui-icon layui-icon-cellphone",
+		"type": 0,
+		"href": "",
+		"children": [ 
+		 
+			{
+				"id": 603,
+				"title": "预约管理",
+				"icon": "layui-icon layui-icon-face-cry",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/privilege/privilege.html"
+			}
+		 
+		]
+	},
+	{
+		"id": "community",
+		"title": "患者管理",
+		"icon": "layui-icon layui-icon-user",
+		"type": 0,
+		"href": "",
+		"children": [{
+			"id": 100,
+			"title": "患者管理",
+			"icon": "layui-icon layui-icon-face-smile",
+			"type": 1,
+			"openType": "_iframe",
+			"href": "view/community/village.html"
+		},{
+			"id": 101,
+			"title": "患者跟进",
+			"icon": "layui-icon layui-icon-face-smile",
+			"type": 1,
+			"openType": "_iframe",
+			"href": "view/house/house.html"
+		} 
+		]
+	},
+	{
+		"id": "parking",
+		"title": "诊断管理",
+		"icon": "layui-icon layui-icon-face-smile",
+		"type": 0,
+		"href": "",
+		"children": [ 
+			{
+				"id": 105,
+				"title": "诊断管理",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/consultation/consultation.html"
+			}]
+	},
+	{
+		"id": "parking",
+		"title": "供应商管理",
+		"icon": "layui-icon layui-icon-cart",
+		"type": 0,
+		"href": "",
+		"children": [ 
+			{
+				"id": 134,
+				"title": "供应商管理",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/vendor/vendor.html"
+			}]
+	},
+	{
+		"id": "parking",
+		"title": "药品管理",
+		"icon": "layui-icon layui-icon-component",
+		"type": 0,
+		"href": "",
+		"children": [ 
+			{
+				"id": 135,
+				"title": "药品管理",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/medicine/medicine.html"
+			},
+			{
+				"id": 137,
+				"title": "药品分类",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/vendor/vendor2.html"
+			}
+		]
+	}
+	 
+	
+	 
+]

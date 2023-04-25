@@ -1,0 +1,41 @@
+{
+  "status": {
+    "code": 200,
+    "message": "操作成功"
+  },
+  "data": [{
+      "id": "001",
+      "title": "手机",
+      "parentId": "0",
+      "children": [{
+          "id": "001001",
+          "title": "手机通信",
+          "last": false,
+          "parentId": "001",
+          "children":[
+            {
+              "id": "001003",
+              "title": "电信",
+              "last": true,
+              "parentId": "001001"
+            }
+          ]
+        },
+        {
+          "id": "001002",
+          "title": "手机配件",
+          "last": false,
+          "parentId": "001",
+          "children":[
+            {
+              "id": "001005",
+              "title": "电池",
+              "last": true,
+              "parentId": "001002"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

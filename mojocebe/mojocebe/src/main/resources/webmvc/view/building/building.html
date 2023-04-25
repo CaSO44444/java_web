@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>小区管理</title>
+		<link href="../../component/pear/css/pear.css" rel="stylesheet" />
+	</head>
+	<body class="pear-container">
+		<div class="layui-card">
+			<div class="layui-card-body">
+				<form class="layui-form" action="">
+					<div class="layui-form-item">
+						<div class="layui-form-item layui-inline">
+							<label class="layui-form-label">小区名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="villageName" placeholder="" class="layui-input">
+							</div>
+						</div>
+
+
+						<div class="layui-form-item layui-inline">
+							<label class="layui-form-label">栋数名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="buildingName" placeholder="" class="layui-input">
+							</div>
+						</div>
+
+						<div class="layui-form-item layui-inline">
+							<button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="goods-query">
+								<i class="layui-icon layui-icon-search"></i>
+								查询
+							</button>
+							<button type="reset" class="pear-btn pear-btn-md">
+								<i class="layui-icon layui-icon-refresh"></i>
+								重置
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="layui-card">
+			<div class="layui-card-body">
+				<table id="village-table" lay-filter="village-table"></table>
+			</div>
+		</div>
+
+		<script type="text/html" id="role-toolbar">
+			<button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+				<i class="layui-icon layui-icon-add-1"></i>
+				新增
+			</button>
+			<button class="pear-btn pear-btn-danger pear-btn-md" lay-event="batchRemove">
+				<i class="layui-icon layui-icon-delete"></i>
+				删除
+			</button>
+		</script>
+
+		<script type="text/html" id="role-bar">
+			<button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
+			<button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i></button>
+		</script>
+
+		<script type="text/html" id="goods-enable">
+
+			<input type="checkbox" name="enable" value="{{d.id}}" lay-skin="switch" lay-text="上架|下架" lay-filter="goods-enable" {{ d.status == 1 ? 'checked' : '' }}>
+		</script>
+
+		<script src="../../component/layui/layui.js"></script>
+		<script src="../../component/pear/pear.js"></script>
+		<script>
+		    layui.use(['table','form','jquery'],function () {
+		        let table = layui.table;
+		        let form = layui.form;
+		        let $ = layui.jquery;
+
+		        let MODULE_PATH = "./building/";
+
+		        let cols = [
+		            [
+		                {type:'checkbox'},
+                        {title: 'ID', field: 'id', align:'center', width:100},
+		                {title: '所属小区名称', field: 'villageName', align:'center'},
+		                {title: '栋数名称', field: 'name', align:'center'},
+						{title: '总户数', field: 'num', align:'center'},
+						{title: '描述', field: 'description', align:'center'},
+						{title: '创建时间', field: 'created', align:'center',templet:function (r){
+								return !!r.created?layui.util.toDateString(r.created, 'yyyy-MM-dd HH:mm:ss'):"";
+							}},
+		                {title: '操作', toolbar: '#role-bar', align:'center', width:195}
+		            ]
+		        ]
+
+		        table.render({
+		            elem: '#village-table',
+		            url: 'http://localhost:8080/sunshine/building/list',
+		            page: true ,
+		            cols: cols ,
+		            skin: 'line',
+					headers: {
+						token: localStorage.getItem("token")
+					},
+		            toolbar: '#role-toolbar',
+		            defaultToolbar: [{
+		                layEvent: 'refresh',
+		                icon: 'layui-icon-refresh',
+		            }, 'filter', 'print', 'exports']
+		        });
+
+		        table.on('tool(village-table)', function(obj){
+		            if(obj.event === 'remove'){
+		                window.remove(obj);
+		            } else if(obj.event === 'edit'){
+		                window.edit(obj);
+		            } else if(obj.event === 'power'){
+		                window.power(obj);
+		            }
+		        });
+
+		        table.on('toolbar(village-table)', function(obj){
+		            if(obj.event === 'add'){
+		                window.add();
+		            } else if(obj.event === 'refresh'){
+		                window.refresh();
+		            } else if(obj.event === 'batchRemove'){
+		                window.batchRemove(obj);
+		            }
+		        });
+
+		        form.on('submit(goods-query)', function(data){
+		            table.reload('village-table',{where:data.field})
+		            return false;
+		        });
+
+		        form.on('switch(goods-enable)', function(obj){
+                    var checked = obj.elem.checked;
+                    let status=2;
+
+                    if(checked==true){
+                        status=1;
+					}
+
+                    $.ajax({
+                        url:'http://www.j236.com/admin/goods/updateStatus',
+                        data:{
+                            "goodsId":this.value,
+							"status":status
+						},
+                        type:'post',
+                        success:function(result){
+                            layer.alert("操作成功!");
+                            form.render();
+                        }
+                    })
+
+		        });
+
+		        window.add = function(){
+		            layer.open({
+		                type: 2,
+		                title: '新增',
+		                shade: 0.1,
+                        maxmin: true,
+		                area: ['800px', '500px'],
+		                content: MODULE_PATH + 'add.html'
+		            });
+		        }
+
+
+		        window.edit = function(obj){
+		            layer.open({
+		                type: 2,
+		                title: '修改',
+		                shade: 0.1,
+		                area: ['800px', '500px'],
+                        content: MODULE_PATH +'edit.html?id='+obj.data.id
+		            });
+		        }
+
+		        window.remove = function(obj){
+		            layer.confirm('确定要删除该小区', {icon: 3, title:'提示'}, function(index){
+		                layer.close(index);
+		                let loading = layer.load();
+                        $.ajax({
+                            url:'http://localhost:8080/sunshine/building/delete',
+                            data:{
+                                "id":obj.data['id'],
+                            },
+                            type:'get',
+                            success:function(result){
+                                layer.close(loading);
+                                if(result.code==0){
+                                    layer.msg(result.msg,{icon:1,time:1000},function(){
+                                        obj.del();
+                                    });
+                                }else{
+                                    layer.msg(result.msg,{icon:2,time:1000});
+                                }
+                            }
+                        })
+
+		            });
+		        }
+
+		        window.batchRemove = function(obj){
+		            let data = table.checkStatus(obj.config.id).data;
+		            if(data.length === 0){
+		                layer.msg("未选中数据",{icon:3,time:1000});
+		                return false;
+		            }
+		            let ids = "";
+		            for(let i = 0;i<data.length;i++){
+		                ids += data[i].id+",";
+		            }
+		            ids = ids.substr(0,ids.length-1);
+		            layer.confirm('确定要删除这些小区', {icon: 3, title:'提示'}, function(index){
+
+
+						$.ajax({
+							url:'http://localhost:8081/sunwise/village/batchDelete',
+							data:{
+							  "ids":ids
+							},
+							type:'get',
+							success:function(result){
+								if(result.code==0){
+									layer.msg(result.msg,{icon:1,time:1000},function(){
+									   table.reload("village-table")
+									});
+								}else{
+									layer.msg(result.msg,{icon:2,time:1000});
+								}
+							}
+						})
+
+
+
+		                console.log(ids)
+
+		            });
+		        }
+
+		        window.refresh = function(){
+		            table.reload('village-table');
+		        }
+		    })
+		</script>
+	</body>
+</html>

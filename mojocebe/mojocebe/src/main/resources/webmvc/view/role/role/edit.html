@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../component/pear/css/pear.css" />
+</head>
+<body>
+<form class="layui-form" lay-filter="layItem" action="">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" required  lay-verify="required" placeholder="请输入角色名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">描述</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="description" required  lay-verify="required" placeholder="请输入描述" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">权限</label>
+                    <div id="privilegeCheckbox" class="layui-input-block">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="village-update">
+                <i class="layui-icon layui-icon-ok"></i>
+                提交
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                重置
+            </button>
+        </div>
+    </div>
+</form>
+<script src="../../../component/layui/layui.js"></script>
+<script src="../../../component/pear/pear.js"></script>
+<script src="../../js/base.js"></script>
+
+
+<script>
+layui.use(['form','jquery','upload'],function(){
+    let form = layui.form;
+    let $ = layui.jquery;
+    let upload = layui.upload;
+
+    //1.获取请求携带id
+    let id=getQueryVariable("id");
+
+    $.ajax({
+        type: "get",
+        dataType:"json",
+        url: "http://localhost:8080/sunshine/permission/findAll",
+        //携带token
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("token", localStorage.getItem("token"));
+        },
+        success: function(res){
+            var data=res.data;
+            $.each(data,function(index,permission){
+                $("#privilegeCheckbox").append("<input type=\"checkbox\" name=\"privilegeIds\" title=\""+permission.name+"\" value=\""+permission.id+"\">");
+            });
+            //重新渲染权限
+            layui.form.render("checkbox");
+
+            //回显复选框
+            $.ajax({
+                type: "get",
+                dataType:"json",
+                url: "http://localhost:8080/sunshine/permission/findPermissionByRoleId",
+                data:{
+                    roleId:id
+                },
+                //携带token
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("token", localStorage.getItem("token"));
+                },
+                success: function(res){
+                    var data=res.data;
+                    $.each(data,function(index,privilege){
+                        //1   3
+                        //添加选中属性
+                        $("#privilegeCheckbox").find("input:checkbox[value='"+privilege.id+"']").attr("checked",true);
+                    });
+                    //重新渲染权限
+                    layui.form.render("checkbox");
+                }
+            });
+
+
+        }
+    });
+
+
+
+
+    //回显基本职位信息
+    $.ajax({
+        url:'http://localhost:8080/sunshine/role/find?id='+id,
+        method:"GET",
+        //携带token
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("token", localStorage.getItem("token"));
+        },
+        success:function(obj){
+
+            var data=obj.data;
+
+            //layui重新给表单赋值
+            form.val("layItem", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+                name:data.name,
+                description:data.description
+            });
+
+        }
+    });
+
+
+
+    form.on('submit(village-update)', function(data){
+
+
+        //获取多选框的id装进数组
+        var quotation = new Array();
+        $("input:checkbox[name='privilegeIds']:checked").each(function(){
+            quotation.push($(this).val());
+        });
+        var str = "";
+        for (var i = 0; i < quotation.length; i++) {
+            str=str+quotation[i]+",";
+        }
+        str=str.substring(0,str.length-1);
+        data.field.permissionIds = str ;
+
+
+        console.info(data.field);
+
+        data.field.id=id;
+
+        $.ajax({
+            url:'http://localhost:8080/sunshine/role/update',
+            type:"post",
+            data:JSON.stringify(data.field),
+            dataType:'json',
+            contentType:'application/json',
+            //携带token
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("token", localStorage.getItem("token"));
+            },
+            success:function(result){
+                if(result.code==0){
+                    layer.msg(result.msg,{icon:1,time:1000},function(){
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                        window.parent.location.reload()
+                    });
+                }else{
+                    layer.msg(result.msg,{icon:2,time:1000});
+                }
+            }
+        })
+        return false;
+    });
+})
+</script>
+<script>
+</script>
+</body>
+</html>

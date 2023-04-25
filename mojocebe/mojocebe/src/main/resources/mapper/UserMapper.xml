@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mojocebe.mapper.UserMapper">
+    <resultMap id="resultMap" type="com.example.mojocebe.entity.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="login" resultMap="resultMap">
+        select *
+        from t_user
+        where username=#{username} and password=#{password} and status=0
+    </select>
+    <insert id="register" parameterType="User">
+        <selectKey keyColumn="id" resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() as id
+        </selectKey>
+        INSERT INTO t_user(username,password,status)
+        VALUES(#{username},#{password},0)
+    </insert>
+    <select id="find" resultMap="resultMap">
+        select *
+        from t_user
+        where username=#{username} and status=0
+    </select>
+</mapper>

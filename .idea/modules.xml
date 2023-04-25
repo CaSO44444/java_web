@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/java web.iml" filepath="$PROJECT_DIR$/.idea/java web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mojocebe/mojocebe/mojocube.iml" filepath="$PROJECT_DIR$/mojocebe/mojocebe/mojocube.iml" />
+    </modules>
+  </component>
+</project>
