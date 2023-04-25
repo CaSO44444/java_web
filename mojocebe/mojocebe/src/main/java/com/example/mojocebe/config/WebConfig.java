@@ -6,6 +6,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.example.mojocebe.Interceptor.RoleInterceptor;
 import com.example.mojocebe.Interceptor.UserInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,9 +24,11 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer {
 
     UserInterceptor userInterceptor;
+    RoleInterceptor roleInterceptor;
 
-    public WebConfig(UserInterceptor userInterceptor) {
+    public WebConfig(UserInterceptor userInterceptor,RoleInterceptor roleInterceptor) {
         this.userInterceptor = userInterceptor;
+        this.roleInterceptor = roleInterceptor;
     }
 
     @Override
@@ -33,6 +36,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(userInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/user/**");
+        registry.addInterceptor(roleInterceptor)
+                .addPathPatterns("/follow/**");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {

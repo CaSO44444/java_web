@@ -29,7 +29,7 @@ public class UserController {
         User user = userService.login(username, password);
         if (user != null) {
             Map map = new HashMap();
-            String token = JwtUtils.getJwtToken(user.getId() + "", user.getUsername());
+            String token = JwtUtils.getJwtToken(user.getId() + "", user.getUsername(), user.getRoles() + "");
             map.put("token", token);
             map.put("username", username);
             return new Result<>().ok(map);
