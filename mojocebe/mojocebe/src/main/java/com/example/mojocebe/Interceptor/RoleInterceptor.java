@@ -31,7 +31,6 @@ public class RoleInterceptor implements HandlerInterceptor {
                 }
                 return true;
             }
-//            return true;
         } catch (Exception e) {
             e.printStackTrace();
             response.setStatus(401);
