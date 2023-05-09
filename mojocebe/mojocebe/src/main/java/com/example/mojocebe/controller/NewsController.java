@@ -14,7 +14,6 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
-
     @GetMapping("/news/query")
     public Result queryNews(){
         List<News> query = this.newsService.queryNews();
