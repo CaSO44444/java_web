@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 public class DeptController {
@@ -19,7 +22,7 @@ public class DeptController {
     @GetMapping ("/dept/query")
     public Result querydept(){
         List<Dept> queryall = deptService.queryall();
-
-        return new Result().ok(queryall);
+        List<String> stringList = queryall.stream().map(Dept::getDept_name).collect(Collectors.toList());
+        return new Result().ok(stringList);
     }
 }
