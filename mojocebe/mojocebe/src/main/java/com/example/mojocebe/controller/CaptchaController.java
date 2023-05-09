@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 
@@ -25,7 +26,8 @@ public class CaptchaController {
         try {
             //生产验证码字符串并保存到session中
             String verifyCode = captchaProducer.createText();
-            httpServletRequest.getSession().setAttribute("verifyCode", verifyCode);
+            HttpSession session = httpServletRequest.getSession();
+            session.setAttribute("verifyCode", verifyCode);
             BufferedImage challenge = captchaProducer.createImage(verifyCode);
             ImageIO.write(challenge, "jpg", imgOutputStream);
         } catch (IllegalArgumentException e) {
