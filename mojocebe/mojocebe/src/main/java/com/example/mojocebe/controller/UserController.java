@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sun.security.provider.MD5;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,18 +41,25 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public Result register(String username, String password,String check_password, Integer roles) {
+    public Result register(String username, String password, String check_password, String verifyCode, Integer roles, HttpServletRequest request) {
         User user = userService.find(username);
         if (user == null){
 //            String Username = user.getUsername();
 //            if (!username.equals(Username)) {
-            if (password.equals(check_password)){
-                userService.register(username, password, roles);
-                return new Result<>().ok();
-            }else{
-                return new Result<>().error("两次输入密码不一致");
+            String kaptchaCode = request.getSession().getAttribute("verifyCode") + "";
+            System.out.println(kaptchaCode);
+            System.out.println(verifyCode);
+            if(verifyCode.equals(kaptchaCode)){
+                if (password.equals(check_password)){
+                    userService.register(username, password, roles);
+                    return new Result<>().ok();
+                }else{
+                    return new Result<>().error("两次输入密码不一致");
+                }
+            }else {
+                return new Result<>().error("验证码错误");
             }
-            }
+        }
 //        }
         return new Result<>().error("用户名已存在");
     }

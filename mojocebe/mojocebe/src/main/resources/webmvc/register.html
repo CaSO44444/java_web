@@ -23,7 +23,14 @@
 		<input placeholder="密 码 : ****** " name="password" type="password" hover class="layui-input"/>
 	</div>
 	<div class="layui-form-item">
-		<input placeholder="确 认 密 码 : ****** " name="password" type="password" hover class="layui-input"/>
+		<input placeholder="确 认 密 码 : ****** " name="check_password" type="password" hover class="layui-input"/>
+	</div>
+
+	<div class="layui-form-item">
+		<input type="text" name="verifyCode" placeholder="请输入验证码" hover class="layui-input" required="true">
+		<img alt="单击图片刷新！" class="pointer" src="/common/kaptcha"
+			 onclick="this.src='/common/kaptcha?d='+new Date()*1">
+		</br>
 	</div>
 
 	<div class="layui-form-item">
