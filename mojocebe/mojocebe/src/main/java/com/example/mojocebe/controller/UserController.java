@@ -32,6 +32,7 @@ public class UserController {
             String token = JwtUtils.getJwtToken(user.getId() + "", user.getUsername(), user.getRoles() + "");
             map.put("token", token);
             map.put("username", username);
+            map.put("role",user.getRoles());
             return new Result<>().ok(map);
         }
         return new Result<>().error("用户名或密码不正确");
