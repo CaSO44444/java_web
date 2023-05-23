@@ -28,6 +28,7 @@ public class CaptchaController {
             String verifyCode = captchaProducer.createText();
             HttpSession session = httpServletRequest.getSession();
             session.setAttribute("verifyCode", verifyCode);
+//            System.out.print(session.getAttribute("verifyCode"));
             BufferedImage challenge = captchaProducer.createImage(verifyCode);
             ImageIO.write(challenge, "jpg", imgOutputStream);
         } catch (IllegalArgumentException e) {

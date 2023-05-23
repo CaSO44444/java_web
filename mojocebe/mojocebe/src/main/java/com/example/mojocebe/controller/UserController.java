@@ -41,14 +41,15 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public Result register(String username, String password, String check_password, String verifyCode, Integer roles, HttpServletRequest request) {
+    public Result register(String username, String password, String check_password, String verifyCode, Integer roles, HttpServletRequest httpServletRequest) {
         User user = userService.find(username);
         if (user == null){
 //            String Username = user.getUsername();
 //            if (!username.equals(Username)) {
-            String kaptchaCode = request.getSession().getAttribute("verifyCode") + "";
+            HttpSession session = httpServletRequest.getSession();
+            String kaptchaCode = session.getAttribute("verifyCode") + "";
             System.out.println(kaptchaCode);
-            System.out.println(verifyCode);
+//            System.out.println(verifyCode);
             if(verifyCode.equals(kaptchaCode)){
                 if (password.equals(check_password)){
                     userService.register(username, password, roles);

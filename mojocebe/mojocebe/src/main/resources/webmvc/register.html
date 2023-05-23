@@ -55,9 +55,12 @@
 		form.on('submit(register)', function(data) {
 
 			$.ajax({
-				url:'http://localhost:8080/user/register',
+				url:'http://127.0.0.1:8080/user/register',
 				data:data.field,
 				type:'post',
+				xhrFields: {
+					withCredentials: true // 发送Ajax时，Request header中会带上 Cookie 信息。
+				},
 				success:function(result){
 					if(result.code==0){
 						layer.msg(result.msg,{icon:1,time:1000},function(){
