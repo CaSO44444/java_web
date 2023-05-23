@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * @Author: zjhang
- * @Date: 2021/6/19 14:37
+ * @Author: DawnT0wn
+ * @Date: 2023/5/16 16:39
  * @Description: 拦截防止注入漏洞（即防止XSS的跨站脚本攻击）
  */
 @WebFilter(urlPatterns = "/*", filterName = "xssFilter")
