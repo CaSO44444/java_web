@@ -305,6 +305,7 @@ CREATE TABLE `t_user` (
                           `username` varchar(255) DEFAULT NULL,
                           `password` varchar(255) DEFAULT NULL,
                           `status` int(11) DEFAULT NULL,
+                          `roles` int(11) DEFAULT NULL,
                           PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 

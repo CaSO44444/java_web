@@ -55,7 +55,7 @@
 		form.on('submit(register)', function(data) {
 
 			$.ajax({
-				url:'http://127.0.0.1:8080/user/register',
+				url:'/user/register',
 				data:data.field,
 				type:'post',
 				xhrFields: {
