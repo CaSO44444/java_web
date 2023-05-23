@@ -24,6 +24,13 @@
 			</div>
 
 			<div class="layui-form-item">
+				<input type="text" name="verifyCode" placeholder="请输入验证码" hover class="layui-input" required="true">
+				<img alt="单击图片刷新！" class="pointer" src="/common/kaptcha"
+					 onclick="this.src='/common/kaptcha?d='+new Date()*1">
+				</br>
+			</div>
+
+			<div class="layui-form-item">
 				<button class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
 					登 录
 				</button>
@@ -46,7 +53,7 @@
 				form.on('submit(login)', function(data) {
 
 					$.ajax({
-						url:'http://localhost:8080/user/login',
+						url:'/user/login',
 						data:data.field,
 						type:'post',
 						success:function(result){
@@ -60,7 +67,11 @@
 
 								});
 							}else{
-								layer.msg(result.msg,{icon:2,time:1000});
+								layer.msg(result.msg,{icon:2,time:1000},function(){
+									//登录成功 跳转到首页
+									location.href = "login.html"
+									//存储token到Storage
+								});
 							}
 						}
 					})

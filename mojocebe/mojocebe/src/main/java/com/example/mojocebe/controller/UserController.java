@@ -27,17 +27,20 @@ public class UserController {
 
 
     @PostMapping("/user/login")
-    public Result login(String username, String password) {
-        User user = userService.login(username, password);
-        if (user != null) {
-            Map map = new HashMap();
-            String token = JwtUtils.getJwtToken(user.getId() + "", user.getUsername(), user.getRoles() + "");
-            map.put("token", token);
-            map.put("username", username);
-            map.put("role",user.getRoles());
-            return new Result<>().ok(map);
+    public Result login(String username, String password, String verifyCode, HttpServletRequest httpServletRequest) {
+        if (verifyCode.equals(httpServletRequest.getSession().getAttribute("verifyCode"))){
+            User user = userService.login(username, password);
+            if (user != null) {
+                Map map = new HashMap();
+                String token = JwtUtils.getJwtToken(user.getId() + "", user.getUsername(), user.getRoles() + "");
+                map.put("token", token);
+                map.put("username", username);
+                map.put("role",user.getRoles());
+                return new Result<>().ok(map);
+            }
+            return new Result<>().error("用户名或密码不正确");
         }
-        return new Result<>().error("用户名或密码不正确");
+        return new Result<>().error("验证码错误");
     }
 
     @PostMapping("/user/register")
