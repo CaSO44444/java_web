@@ -1,9 +1,8 @@
 package com.example.mojocebe.entity;
 
-import cn.hutool.core.date.DateTime;
 import lombok.Data;
 
-import java.sql.Time;
+import java.sql.Date;
 
 @Data
 public class Consultation {
@@ -15,7 +14,7 @@ public class Consultation {
     private int bed_num;
     private Doctor doctor;
     private Float money;
-    private Time time;
+    private Date time;
     private Medicine medicine;
     private int pay;
     private int status;

@@ -1,12 +1,8 @@
 package com.example.mojocebe.Dto;
 
-import com.example.mojocebe.entity.Dept;
-import com.example.mojocebe.entity.Doctor;
-import com.example.mojocebe.entity.Medicine;
-import com.example.mojocebe.entity.Patient;
 import lombok.Data;
 
-import java.sql.Time;
+import java.sql.Date;
 
 @Data
 public class ConsultationDto {
@@ -17,7 +13,7 @@ public class ConsultationDto {
     private int bed_num;
     private int doctorId;
     private Float money;
-    private Time time;
+    private Date time;
     private int  medicineId;
     private int pay;
 }

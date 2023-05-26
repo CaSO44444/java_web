@@ -6,11 +6,9 @@ import com.example.mojocebe.service.ConsultationService;
 import com.example.mojocebe.utils.Result;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -23,6 +21,19 @@ public class ConsultationController {
         return new Result().ok(queryall);
     }
 
+    @PostMapping("/consultation/selectBydoctorId")
+    public Result selectBydoctorId(@RequestParam String id, @RequestParam String status){
+        Integer doctor_id = Integer.parseInt(id);
+        Integer status_code = Integer.parseInt(status);
+        List<Consultation> selectBydoctorId = consultationService.selectBydoctorId(doctor_id, status_code);
+        return new Result().ok(selectBydoctorId);
+    }
+
+    @PostMapping("/consultation/selectBydate")
+    public Result selectBytime(@RequestParam Date date){
+        List<Consultation> selectBytime = consultationService.selectBydate(date);
+        return new Result().ok(selectBytime);
+    }
 
     @PostMapping("/consultation/add")
     public Result add(@RequestBody ConsultationDto consultationDto){

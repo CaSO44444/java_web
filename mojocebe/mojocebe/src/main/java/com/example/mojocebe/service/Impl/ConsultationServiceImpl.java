@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -20,6 +21,15 @@ public class ConsultationServiceImpl implements ConsultationService {
         return queryall;
     }
 
+    public List<Consultation> selectBydoctorId(Integer docker_id, Integer status){
+        List<Consultation> selectBydoctorId = consultationMapper.selectBydoctorId(docker_id, status);
+        return selectBydoctorId;
+    }
+
+    public List<Consultation> selectBydate(Date time){
+        List<Consultation> selectBydate = consultationMapper.selectBydate(time);
+        return selectBydate;
+    }
     @Override
     public void add(ConsultationDto consultationDto) {
         Consultation consultation = new Consultation();

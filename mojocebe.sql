@@ -30,7 +30,7 @@ CREATE TABLE `consultation` (
                                 `bed_num` int(11) DEFAULT NULL,
                                 `doctor` int(11) DEFAULT NULL,
                                 `money` float(255,0) DEFAULT NULL,
-                                `time` time DEFAULT NULL,
+                                `time` date DEFAULT NULL,
                                 `medicine` int(11) DEFAULT NULL,
                                 `pay` int(11) DEFAULT NULL,
                                 `status` int(11) DEFAULT NULL,

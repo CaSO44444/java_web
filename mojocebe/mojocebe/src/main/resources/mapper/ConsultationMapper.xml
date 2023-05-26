@@ -8,6 +8,7 @@
         <result property="bed_num" column="bed_num"/>
         <result property="money" column="money"/>
         <result property="time" column="time"/>
+        <result property="status" column="status"/>
         <association property="dept" javaType="com.example.mojocebe.entity.Dept">
             <result property="dept_id" column="dept_id"/>
             <result property="dept_name" column="dept_name"/>
@@ -30,6 +31,18 @@
         SELECT c.*,d.*,p.*,de.*,m.*
         FROM consultation c join patient p on c.patient=p.id join doctor d on d.doctor_id = p.doctor
         join dept de on c.dept=de.dept_id join medicine m on c.medicine=m.medicine_id where c.status=0
+    </select>
+
+    <select id="selectBydoctorId" resultMap="consultationResultMap">
+        SELECT c.*,d.*,p.*,de.*,m.*
+        FROM consultation c join patient p on c.patient=p.id join doctor d on d.doctor_id = p.doctor
+        join dept de on c.dept=de.dept_id join medicine m on c.medicine=m.medicine_id where d.doctor_id=#{docker_id} and c.status=#{status}
+    </select>
+
+    <select id="selectBydate" resultMap="consultationResultMap">
+        SELECT c.*,d.*,p.*,de.*,m.*
+        FROM consultation c join patient p on c.patient=p.id join doctor d on d.doctor_id = p.doctor
+        join dept de on c.dept=de.dept_id join medicine m on c.medicine=m.medicine_id where c.time=#{time}
     </select>
 
     <insert id="add" parameterType="consultation">
