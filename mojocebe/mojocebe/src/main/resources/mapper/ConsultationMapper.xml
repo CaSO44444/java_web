@@ -20,6 +20,7 @@
         <association property="patient" javaType="com.example.mojocebe.entity.Patient">
             <result property="id" column="id"/>
             <result property="name" column="name"/>
+            <result property="age" column="age"/>
             <collection property="doctor" ofType="com.example.mojocebe.entity.Doctor">
                 <result property="doctor_id" column="doctor_id"/>
                 <result property="doctor_name" column="doctor_name"/>
