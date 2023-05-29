@@ -30,8 +30,8 @@ public class ConsultationController {
     }
 
     @PostMapping("/consultation/selectBydate")
-    public Result selectBytime(@RequestParam Date date){
-        List<Consultation> selectBytime = consultationService.selectBydate(date);
+    public Result selectBytime(@RequestParam Date date, String docker_id){
+        List<Consultation> selectBytime = consultationService.selectBydate(date,docker_id);
         return new Result().ok(selectBytime);
     }
 

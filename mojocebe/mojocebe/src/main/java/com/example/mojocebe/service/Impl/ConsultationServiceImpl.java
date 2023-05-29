@@ -31,8 +31,8 @@ public class ConsultationServiceImpl implements ConsultationService {
         return selectByPatientName;
     }
 
-    public List<Consultation> selectBydate(Date time){
-        List<Consultation> selectBydate = consultationMapper.selectBydate(time);
+    public List<Consultation> selectBydate(Date time,String docker_id){
+        List<Consultation> selectBydate = consultationMapper.selectBydate(time,docker_id);
         return selectBydate;
     }
     @Override
