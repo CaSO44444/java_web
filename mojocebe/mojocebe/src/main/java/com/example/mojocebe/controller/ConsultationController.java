@@ -35,6 +35,11 @@ public class ConsultationController {
         return new Result().ok(selectBytime);
     }
 
+    @PostMapping("/consultation/selectByPatientName")
+    public Result selectByPatientName(@RequestParam String patient_name){
+        List<Consultation> selectByPatientName = consultationService.selectByPatientName(patient_name);
+        return new Result().ok(selectByPatientName);
+    }
     @PostMapping("/consultation/add")
     public Result add(@RequestBody ConsultationDto consultationDto){
         this.consultationService.add(consultationDto);

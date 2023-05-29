@@ -13,6 +13,7 @@ public interface ConsultationMapper {
 
     List<Consultation> selectBydate(Date time);
 
+    List<Consultation> selectByPatientName(String patient_name);
     void add(Consultation consultation);
 
 

@@ -26,6 +26,11 @@ public class ConsultationServiceImpl implements ConsultationService {
         return selectBydoctorId;
     }
 
+    public List<Consultation> selectByPatientName(String patient_name){
+        List<Consultation> selectByPatientName = consultationMapper.selectByPatientName(patient_name);
+        return selectByPatientName;
+    }
+
     public List<Consultation> selectBydate(Date time){
         List<Consultation> selectBydate = consultationMapper.selectBydate(time);
         return selectBydate;
