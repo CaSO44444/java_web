@@ -33,15 +33,15 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(userInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/user/**")
-                .excludePathPatterns("/user/register")
-                .excludePathPatterns("/dept/query")
-                .excludePathPatterns("/webmvc/**")
-                .excludePathPatterns("/common/**");
-        registry.addInterceptor(roleInterceptor)
-                .addPathPatterns("/follow/**");
+//        registry.addInterceptor(userInterceptor)
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/user/**")
+//                .excludePathPatterns("/user/register")
+//                .excludePathPatterns("/dept/query")
+//                .excludePathPatterns("/webmvc/**")
+//                .excludePathPatterns("/common/**");
+//        registry.addInterceptor(roleInterceptor)
+//                .addPathPatterns("/follow/**");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
