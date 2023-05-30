@@ -16,4 +16,6 @@ public class ConsultationDto {
     private Date time;
     private int  medicineId;
     private int pay;
+    private int status;
 }
+

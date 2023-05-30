@@ -39,7 +39,6 @@ public class ConsultationServiceImpl implements ConsultationService {
     public void add(ConsultationDto consultationDto) {
         Consultation consultation = new Consultation();
         BeanUtils.copyProperties(consultationDto,consultation);
-        consultation.setStatus(0);
 
         Doctor doctor = new Doctor();
         doctor.setDoctor_id(consultationDto.getDoctorId());
