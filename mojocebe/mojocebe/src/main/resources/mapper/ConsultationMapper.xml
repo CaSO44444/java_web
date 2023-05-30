@@ -49,7 +49,7 @@
     <select id="selectBydate" resultMap="consultationResultMap">
         SELECT c.*,d.*,p.*,de.*,m.*
         FROM consultation c join patient p on c.patient=p.id join doctor d on d.doctor_id = p.doctor
-        join dept de on c.dept=de.dept_id join medicine m on c.medicine=m.medicine_id where c.time=#{time} and d.docktor_id=#{docker_id}
+        join dept de on c.dept=de.dept_id join medicine m on c.medicine=m.medicine_id where c.time=#{time} and d.doctor_id=#{docker_id} and c.status=#{status}
     </select>
 
     <insert id="add" parameterType="consultation">

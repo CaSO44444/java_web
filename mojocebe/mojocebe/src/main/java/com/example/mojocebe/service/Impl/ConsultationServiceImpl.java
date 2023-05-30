@@ -31,15 +31,14 @@ public class ConsultationServiceImpl implements ConsultationService {
         return selectByPatientName;
     }
 
-    public List<Consultation> selectBydate(Date time,String docker_id){
-        List<Consultation> selectBydate = consultationMapper.selectBydate(time,docker_id);
+    public List<Consultation> selectBydate(Date time,String docker_id, String status){
+        List<Consultation> selectBydate = consultationMapper.selectBydate(time,docker_id,status);
         return selectBydate;
     }
     @Override
     public void add(ConsultationDto consultationDto) {
         Consultation consultation = new Consultation();
         BeanUtils.copyProperties(consultationDto,consultation);
-        consultation.setStatus(0);
 
         Doctor doctor = new Doctor();
         doctor.setDoctor_id(consultationDto.getDoctorId());
