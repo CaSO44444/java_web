@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestJJwts {
+public class TestJwts {
     // token时效：24小时
     public static final long EXPIRE = 1000 * 60 * 60 * 24;
     // 签名哈希的密钥，对于不同的加密算法来说含义不同

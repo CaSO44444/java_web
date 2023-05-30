@@ -36,6 +36,7 @@ public class UserController {
                 map.put("token", token);
                 map.put("username", username);
                 map.put("role",user.getRoles());
+                httpServletRequest.getSession().setAttribute("Authorization", token);
                 return new Result<>().ok(map);
             }
             return new Result<>().error("用户名或密码不正确");
@@ -47,12 +48,9 @@ public class UserController {
     public Result register(String username, String password, String check_password, String verifyCode, Integer roles, HttpServletRequest httpServletRequest) {
         User user = userService.find(username);
         if (user == null){
-//            String Username = user.getUsername();
-//            if (!username.equals(Username)) {
             HttpSession session = httpServletRequest.getSession();
             String kaptchaCode = session.getAttribute("verifyCode") + "";
             System.out.println(kaptchaCode);
-//            System.out.println(verifyCode);
             if(verifyCode.equals(kaptchaCode)){
                 if (password.equals(check_password)){
                     userService.register(username, password, roles);

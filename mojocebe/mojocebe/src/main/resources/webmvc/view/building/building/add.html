@@ -69,7 +69,7 @@ layui.use(['form','jquery','upload'],function(){
 
 
     $.ajax({
-        url:'http://localhost:8080/sunshine/village/findAll',
+        url:'/sunshine/village/findAll',
         type:'get',
         beforeSend: function(request) {
             request.setRequestHeader("token", localStorage.getItem("token"));
@@ -101,7 +101,7 @@ layui.use(['form','jquery','upload'],function(){
 
 
         $.ajax({
-            url:'http://localhost:8080/sunshine/building/add',
+            url:'/sunshine/building/add',
             data:JSON.stringify(data.field),
             dataType:'json',
             contentType:'application/json',

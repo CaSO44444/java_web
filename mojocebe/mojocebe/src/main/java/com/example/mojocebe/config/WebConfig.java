@@ -6,7 +6,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.example.mojocebe.Interceptor.RoleInterceptor;
+import com.example.mojocebe.Interceptor.DoctorInterceptor;
+import com.example.mojocebe.Interceptor.PatientInterceptor;
 import com.example.mojocebe.Interceptor.UserInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,11 +25,14 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer {
 
     UserInterceptor userInterceptor;
-    RoleInterceptor roleInterceptor;
+    DoctorInterceptor doctorInterceptor;
+    PatientInterceptor patientInterceptor;
 
-    public WebConfig(UserInterceptor userInterceptor,RoleInterceptor roleInterceptor) {
+    public WebConfig(UserInterceptor userInterceptor, DoctorInterceptor doctorInterceptor, PatientInterceptor patientInterceptor) {
         this.userInterceptor = userInterceptor;
-        this.roleInterceptor = roleInterceptor;
+        this.doctorInterceptor = doctorInterceptor;
+        this.patientInterceptor = patientInterceptor;
+
     }
 
     @Override
@@ -40,8 +44,13 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/dept/query")
                 .excludePathPatterns("/webmvc/**")
                 .excludePathPatterns("/common/**");
-        registry.addInterceptor(roleInterceptor)
-                .addPathPatterns("/follow/**");
+        registry.addInterceptor(doctorInterceptor)
+                .addPathPatterns("/manager/**");
+//        registry.addInterceptor(doctorInterceptor)
+//                .addPathPatterns("/manager/**");
+        registry.addInterceptor(patientInterceptor)
+                .addPathPatterns("/manager/**")
+                .addPathPatterns("/doctor/**");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
