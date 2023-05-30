@@ -76,6 +76,6 @@
 
 
     <update id="update" parameterType="consultation">
-        update consultation set  type=#{type},con_num=#{con_num},patient=#{patient.id},dept=#{dept.dept_id},bed_num=#{bed_num},doctor=#{doctor.docter_id},money=#{money},time=#{time},medicine=#{medicine.medicine_id},pay=#{pay},status=#{status} where consultation_id = #{id}
+        update consultation set type=#{type},con_num=#{con_num},patient=#{patient.id},dept=#{dept.dept_id},bed_num=#{bed_num},doctor=#{doctor.doctor_id},money=#{money},time=#{time},medicine=#{medicine.medicine_id},pay=#{pay},status=#{status} where consultation_id = #{consultation_id}
     </update>
 </mapper>

@@ -69,6 +69,7 @@ public class ConsultationServiceImpl implements ConsultationService {
         this.consultationMapper.batchRemove(ids);
     }
 
+    @Override
     public void update(ConsultationDto consultationDto) {
         Consultation consultation = new Consultation();
         BeanUtils.copyProperties(consultationDto,consultation);

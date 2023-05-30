@@ -6,6 +6,7 @@ import java.sql.Date;
 
 @Data
 public class ConsultationDto {
+    private int consultation_id;
     private String type;
     private int con_num;
     private int patientId;
