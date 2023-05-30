@@ -373,4 +373,13 @@ INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `nu
 INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (15, '甲甲', '甲', '6级', 0, 22, '江西', '二仙桥成都理工大学', 2, 1);
 COMMIT;
 
+DROP TABLE IF EXISTS `medicine_list`;
+CREATE TABLE `medicine_list` (
+                          `id` int(11) NOT NULL AUTO_INCREMENT,
+                          `patient_id` int(11) DEFAULT NULL,
+                          `doctor_id` int(11) DEFAULT NULL,
+                          `medicine_id` int(11) DEFAULT NULL,
+                          PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
 SET FOREIGN_KEY_CHECKS = 1;
