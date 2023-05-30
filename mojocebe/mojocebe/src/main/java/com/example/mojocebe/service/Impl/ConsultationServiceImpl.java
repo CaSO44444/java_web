@@ -55,7 +55,7 @@ public class ConsultationServiceImpl implements ConsultationService {
         Patient patient = new Patient();
         patient.setId(consultationDto.getPatientId());
         consultation.setPatient(patient);
-        this.consultationMapper.update(consultation);
+        this.consultationMapper.add(consultation);
 
     }
 

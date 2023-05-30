@@ -2,6 +2,7 @@ package com.example.mojocebe.service;
 
 import com.example.mojocebe.Dto.ConsultationDto;
 import com.example.mojocebe.entity.Consultation;
+import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;

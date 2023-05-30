@@ -74,17 +74,8 @@
         </foreach>
     </delete>
 
-    <insert id="add" parameterType="consultation">
-        insert into consultation(type,con_num,patient,dept,bed_num,doctor,money,time,medicine,pay,status)
-        values (#{type},#{con_num},#{patient.id},#{dept.dept_id},#{bed_num},#{doctor.doctor_id},#{money},#{time},#{medicine.medicine_id},
-                #{pay},#{status})
-    </insert>
 
     <update id="update" parameterType="consultation">
-        update consultatiton set  type=#{type},
-                           con_num=#{con_num},patient=#{patient.id},dept=#{dept.dept_id},
-                           bed_num=#{bed_num},doctor=#{doctor.docter_id},money=#{money},time={time},
-                           medicine={medicine.medicine_id},pay={pay},status={status}
-                           where consultation_id = #{id}
+        update consultation set  type=#{type},con_num=#{con_num},patient=#{patient.id},dept=#{dept.dept_id},bed_num=#{bed_num},doctor=#{doctor.docter_id},money=#{money},time=#{time},medicine=#{medicine.medicine_id},pay=#{pay},status=#{status} where consultation_id = #{id}
     </update>
 </mapper>
