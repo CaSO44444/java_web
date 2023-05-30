@@ -91,4 +91,10 @@ public class ConsultationServiceImpl implements ConsultationService {
         consultation.setPatient(patient);
         this.consultationMapper.update(consultation);
     }
+    public void update_status(ConsultationDto consultationDto) {
+        Consultation consultation = new Consultation();
+        BeanUtils.copyProperties(consultationDto,consultation);
+
+        this.consultationMapper.update_status(consultation);
+    }
 }

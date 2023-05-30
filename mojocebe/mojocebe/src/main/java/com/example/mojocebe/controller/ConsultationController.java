@@ -61,6 +61,12 @@ public class ConsultationController {
         this.consultationService.update(consultationDto);
         return new Result().ok();
     }
+    @PostMapping("/consultation/update_status")
+    public Result update_status(@RequestBody ConsultationDto consultationDto){
+        this.consultationService.update_status(consultationDto);
+        return new Result().ok();
+    }
+
 
 
 }

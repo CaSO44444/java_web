@@ -21,4 +21,6 @@ public interface ConsultationService {
     void batchDelete(Integer[] ids);
 
     void update(ConsultationDto consultationDto);
+
+    void update_status(ConsultationDto consultationDto);
 }

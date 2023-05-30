@@ -21,4 +21,5 @@ public interface ConsultationMapper {
     void batchRemove(Integer[] ids);
 
     void update(Consultation consultation);
+    void update_status(Consultation consultation);
 }
