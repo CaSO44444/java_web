@@ -46,8 +46,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/common/**");
         registry.addInterceptor(doctorInterceptor)
                 .addPathPatterns("/manager/**");
-//        registry.addInterceptor(doctorInterceptor)
-//                .addPathPatterns("/manager/**");
         registry.addInterceptor(patientInterceptor)
                 .addPathPatterns("/manager/**")
                 .addPathPatterns("/doctor/**");
