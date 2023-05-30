@@ -79,7 +79,7 @@ layui.use(['form','jquery','upload'],function(){
 
 
     $.ajax({
-        url:'http://localhost:8080/sunshine/village/findAll',
+        url:'/sunshine/village/findAll',
         type:'get',
         success:function(result){
             if(result.code==0){
@@ -96,7 +96,7 @@ layui.use(['form','jquery','upload'],function(){
 
                 //回显数据
                 $.ajax({
-                    url:'http://localhost:8080/sunshine/building/find?id='+id,
+                    url:'/sunshine/building/find?id='+id,
                     method:"GET",
                     success:function(obj){
 
@@ -147,7 +147,7 @@ layui.use(['form','jquery','upload'],function(){
         data.field.id=id;
 
         $.ajax({
-            url:'http://localhost:8080/sunshine/building/update',
+            url:'/sunshine/building/update',
             data:JSON.stringify(data.field),
             dataType:'json',
             contentType:'application/json',

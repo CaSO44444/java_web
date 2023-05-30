@@ -305,7 +305,7 @@ CREATE TABLE `t_user` (
                           `username` varchar(255) DEFAULT NULL,
                           `password` varchar(255) DEFAULT NULL,
                           `status` int(11) DEFAULT NULL,
-                          `roles` int(11) DEFAULT NULL,
+                          `roles` int(11) DEFAULT 2,
                           PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
@@ -313,9 +313,9 @@ CREATE TABLE `t_user` (
 -- Records of t_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_user` (`id`, `username`, `password`, `status`) VALUES (1, 'chenlong', '123', 0);
-INSERT INTO `t_user` (`id`, `username`, `password`, `status`) VALUES (2, 'lisi', '32425 ', 0);
-INSERT INTO `t_user` (`id`, `username`, `password`, `status`) VALUES (3, 'admin', 'admin', 0);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`,`roles`) VALUES (1, 'chenlong', '123', 0,2);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`,`roles`) VALUES (2, 'lisi', '32425 ', 0,1);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`,`roles`) VALUES (3, 'admin', 'admin', 0,0);
 COMMIT;
 
 -- ----------------------------

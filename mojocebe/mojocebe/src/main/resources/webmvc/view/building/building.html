@@ -93,7 +93,7 @@
 
 		        table.render({
 		            elem: '#village-table',
-		            url: 'http://localhost:8080/sunshine/building/list',
+		            url: '/sunshine/building/list',
 		            page: true ,
 		            cols: cols ,
 		            skin: 'line',
@@ -182,7 +182,7 @@
 		                layer.close(index);
 		                let loading = layer.load();
                         $.ajax({
-                            url:'http://localhost:8080/sunshine/building/delete',
+                            url:'/sunshine/building/delete',
                             data:{
                                 "id":obj.data['id'],
                             },

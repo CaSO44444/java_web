@@ -36,6 +36,7 @@ public class UserController {
                 map.put("token", token);
                 map.put("username", username);
                 map.put("role",user.getRoles());
+                httpServletRequest.getSession().setAttribute("Authorization", token);
                 return new Result<>().ok(map);
             }
             return new Result<>().error("用户名或密码不正确");

@@ -45,7 +45,7 @@
 				//执行实例
 				var uploadInst = upload.render({
 					elem: '#export' //绑定元素
-					,url: 'http://localhost:8080/sunshine/permission/import' //上传接口
+					,url: '/sunshine/permission/import' //上传接口
 					,field:"file"
 					,accept: 'file'
 					,done: function(res){
@@ -92,7 +92,7 @@
 
 		        table.render({
 		            elem: '#village_table',
-		            url: 'http://localhost:8080/medicine/queryall',
+		            url: '/medicine/queryall',
 		            page: true ,
 		            cols: cols ,
 		            skin: 'line',
@@ -178,7 +178,7 @@
 		                let loading = layer.load();
 
                         $.ajax({
-                            url:'http://localhost:8080/medicine/deleteById',
+                            url:'/medicine/deleteById',
                             data:{
                                 "id":obj.data['id']
                             },
@@ -218,7 +218,7 @@
 		                layer.close(index);
 		                let loading = layer.load();
 		                $.ajax({
-		                    url: "http://localhost:8080/medicine/batchRemove",
+		                    url: "/medicine/batchRemove",
 							data:{
 		                    	"ids":ids
 							},

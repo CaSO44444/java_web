@@ -62,7 +62,7 @@ layui.use(['form','jquery','upload'],function(){
     $.ajax({
         type: "get",
         dataType:"json",
-        url: "http://localhost:8080/sunshine/permission/findAll",
+        url: "/sunshine/permission/findAll",
         //携带token
         beforeSend: function (XMLHttpRequest) {
             XMLHttpRequest.setRequestHeader("token", localStorage.getItem("token"));
@@ -79,7 +79,7 @@ layui.use(['form','jquery','upload'],function(){
             $.ajax({
                 type: "get",
                 dataType:"json",
-                url: "http://localhost:8080/sunshine/permission/findPermissionByRoleId",
+                url: "/sunshine/permission/findPermissionByRoleId",
                 data:{
                     roleId:id
                 },
@@ -108,7 +108,7 @@ layui.use(['form','jquery','upload'],function(){
 
     //回显基本职位信息
     $.ajax({
-        url:'http://localhost:8080/sunshine/role/find?id='+id,
+        url:'/sunshine/role/find?id='+id,
         method:"GET",
         //携带token
         beforeSend: function (XMLHttpRequest) {
@@ -150,7 +150,7 @@ layui.use(['form','jquery','upload'],function(){
         data.field.id=id;
 
         $.ajax({
-            url:'http://localhost:8080/sunshine/role/update',
+            url:'/sunshine/role/update',
             type:"post",
             data:JSON.stringify(data.field),
             dataType:'json',

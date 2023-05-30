@@ -49,7 +49,7 @@ layui.use(['form','jquery','upload'],function(){
     $.ajax({
         type: "get",
         dataType:"json",
-        url: "http://localhost:8080/sunshine/role/findAll",
+        url: "/sunshine/role/findAll",
         //携带token
         beforeSend: function (XMLHttpRequest) {
             XMLHttpRequest.setRequestHeader("token", localStorage.getItem("token"));
@@ -66,7 +66,7 @@ layui.use(['form','jquery','upload'],function(){
             $.ajax({
                 type: "get",
                 dataType:"json",
-                url: "http://localhost:8080/sunshine/role/findRoleByAdminId",
+                url: "/sunshine/role/findRoleByAdminId",
                 data:{
                     adminId:id
                 },
@@ -117,7 +117,7 @@ layui.use(['form','jquery','upload'],function(){
         data.field.id=id;
 
         $.ajax({
-            url:'http://localhost:8080/sunshine/admin/updateAdminRole',
+            url:'/sunshine/admin/updateAdminRole',
             type:"post",
             data:data.field,
             //携带token

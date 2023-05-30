@@ -106,7 +106,7 @@ layui.use(['form','jquery','upload'],function(){
    
    
     $.ajax({
-        url:'http://localhost:8080/doctor/query',
+        url:'/doctor/query',
         type:'get',
         async:false,
         beforeSend: function(request) {
@@ -132,7 +132,7 @@ layui.use(['form','jquery','upload'],function(){
     })
  
     $.ajax({
-        url:'http://localhost:8080/title/query',
+        url:'/title/query',
         type:'get',
         async:false,
         beforeSend: function(request) {
@@ -160,7 +160,7 @@ layui.use(['form','jquery','upload'],function(){
    let id=getQueryVariable("id");
     //回显数据
     $.ajax({
-        url:'http://localhost:8080/reservation/find?id='+id,
+        url:'/reservation/find?id='+id,
         method:"GET",
         success:function(obj){
 
@@ -200,7 +200,7 @@ layui.use(['form','jquery','upload'],function(){
     //普通图片上传
     var uploadInst = upload.render({
         elem: '#test1'
-        ,url: 'http://localhost:8080/sunshine/village/add' //改成您自己的上传接口
+        ,url: '/sunshine/village/add' //改成您自己的上传接口
         ,field:"image"
         ,before: function(obj){
             //预读本地文件示例，不支持ie8
@@ -235,7 +235,7 @@ layui.use(['form','jquery','upload'],function(){
 
         console.info(data.field);
         $.ajax({
-            url:'http://localhost:8080/patient/update',
+            url:'/patient/update',
             data:JSON.stringify(data.field),
             dataType:'json',
             contentType:'application/json',
