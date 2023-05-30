@@ -56,4 +56,11 @@ public class ConsultationController {
         return new Result().ok();
     }
 
+    @GetMapping("/consultation/update")
+    public Result update(@RequestBody ConsultationDto consultationDto){
+        this.consultationService.update(consultationDto);
+        return new Result().ok();
+    }
+
+
 }

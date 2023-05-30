@@ -19,4 +19,6 @@ public interface ConsultationMapper {
     void deleteById(Integer id);
 
     void batchRemove(Integer[] ids);
+
+    void update(Consultation consultation);
 }

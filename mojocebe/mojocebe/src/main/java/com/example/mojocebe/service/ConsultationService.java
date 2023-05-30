@@ -18,4 +18,6 @@ public interface ConsultationService {
     void delete(Integer id);
 
     void batchDelete(Integer[] ids);
+
+    void update(ConsultationDto consultationDto);
 }
