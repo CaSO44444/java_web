@@ -59,7 +59,7 @@ layui.use(['form','jquery','upload','dtree'],function(){
     $.ajax({
         type: "get",
         dataType:"json",
-        url: "http://localhost:8080/sunshine/permission/findAll",
+        url: "/sunshine/permission/findAll",
         success: function(res){
             var data=res.data;
             $.each(data,function(index,permission){
@@ -100,7 +100,7 @@ layui.use(['form','jquery','upload','dtree'],function(){
 
 
         $.ajax({
-            url:'http://localhost:8080/sunshine/role/add',
+            url:'/sunshine/role/add',
             type:"post",
             data:JSON.stringify(data.field),
             dataType:'json',

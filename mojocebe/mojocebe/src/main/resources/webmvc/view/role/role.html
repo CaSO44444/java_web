@@ -84,7 +84,7 @@
 
 		        table.render({
 		            elem: '#village_table',
-		            url: 'http://localhost:8080/sunshine/role/list',
+		            url: '/sunshine/role/list',
 		            page: true ,
 		            cols: cols ,
 		            skin: 'line',
@@ -175,7 +175,7 @@
 		                let loading = layer.load();
 
                         $.ajax({
-                            url:'http://localhost:8080/community/village/delete',
+                            url:'/community/village/delete',
                             data:{
                                 "id":obj.data['id']
                             },
@@ -215,7 +215,7 @@
 		                layer.close(index);
 		                let loading = layer.load();
 		                $.ajax({
-		                    url: "http://localhost:8080/community/village/deleteByIds",
+		                    url: "/community/village/deleteByIds",
 							data:{
 		                    	"ids":ids
 							},

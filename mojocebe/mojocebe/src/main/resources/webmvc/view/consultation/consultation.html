@@ -110,7 +110,7 @@
 		
 		        table.render({
 		            elem: '#goods-table',
-		            url: 'http://localhost:8080/consultation/queryall',
+		            url: '/consultation/queryall',
 		            page: true ,
 		            cols: cols ,
 		            skin: 'line',
@@ -198,7 +198,7 @@
 		                let loading = layer.load();
 
                         $.ajax({
-                            url:'http://localhost:8080/consultation/deleteById',
+                            url:'/consultation/deleteById',
                             data:{
                                 "id":obj.data['id']
                             },
@@ -238,7 +238,7 @@
 		                layer.close(index);
 		                let loading = layer.load();
 		                $.ajax({
-		                    url: "http://localhost:8080/consultation/batchRemove",
+		                    url: "/consultation/batchRemove",
 							data:{
 		                    	"ids":ids
 							},

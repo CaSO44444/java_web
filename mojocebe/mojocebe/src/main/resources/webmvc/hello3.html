@@ -15,7 +15,7 @@
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
 
-    $.get('http://localhost:8080/sunshine/carport/findCarportCount').done(function(data) {
+    $.get('/sunshine/carport/findCarportCount').done(function(data) {
         // data 的结构:
         // {
         //     categories: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],

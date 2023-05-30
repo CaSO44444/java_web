@@ -84,7 +84,7 @@ layui.use(['form','jquery','upload','dtree'],function(){
     let upload = layui.upload;
 
     $.ajax({
-        url:'http://localhost:8080/dept/query',
+        url:'/dept/query',
         type:'get',
         beforeSend: function(request) {
             request.setRequestHeader("token", localStorage.getItem("token"));
@@ -109,7 +109,7 @@ layui.use(['form','jquery','upload','dtree'],function(){
     })
 
     $.ajax({
-        url:'http://localhost:8080/title/query',
+        url:'/title/query',
         type:'get',
         beforeSend: function(request) {
             request.setRequestHeader("token", localStorage.getItem("token"));
@@ -138,7 +138,7 @@ layui.use(['form','jquery','upload','dtree'],function(){
     form.on('submit(reservation-save)', function(data){
 
         $.ajax({
-            url:'http://localhost:8080/reservation/add',
+            url:'/reservation/add',
             data:JSON.stringify(data.field),
             dataType:'json',
             contentType:'application/json',
