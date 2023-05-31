@@ -26,7 +26,6 @@ public class MedicineController {
 
     @GetMapping("/medicine/deleteById")
     public Result delete(Integer id) {
-
         medicineService.delete(id);
         return new Result().ok();
     }

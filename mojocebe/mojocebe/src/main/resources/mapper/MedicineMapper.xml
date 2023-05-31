@@ -31,10 +31,9 @@
     </select>
 
     <delete id="deleteById" parameterType="int">
-        update  medicine
-        set status=1
+        delete from medicine
         where
-            medicine_id=#{id}
+            medicine_id=#{medicine_id}
     </delete>
 
     <delete id="batchDelete">
@@ -63,7 +62,7 @@
         update medicine set
                             type=#{medicineType.type_id},medicine_name=#{medicine_name},medicine_card=#{medicine_card},model=
                                 #{model},price=#{price},medicine_num=#{medicine_num},unit=#{unit},manager=#{manager.manager_id},vendor=#{vendor.vendor_id}
-                                status=#{status}
+                                ,status=#{status}
         where medicine_id = #{medicine_id}
     </update>
 </mapper>

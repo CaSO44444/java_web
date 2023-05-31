@@ -22,7 +22,7 @@ public class ConsultationController {
     }
 
     @PostMapping("/consultation/selectBydoctorId")
-    public Result selectBydoctorId(@RequestParam String id, @RequestParam String status){
+    public Result selectBydoctorId(@RequestParam String id, String status){
         Integer doctor_id = Integer.parseInt(id);
         Integer status_code = Integer.parseInt(status);
         List<Consultation> selectBydoctorId = consultationService.selectBydoctorId(doctor_id, status_code);
@@ -48,6 +48,7 @@ public class ConsultationController {
 
     @GetMapping("/consultation/deleteById")
     public Result deleteById(Integer id){
+        this.consultationService.delete(id);
         return new Result().ok();
     }
 

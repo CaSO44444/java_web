@@ -6,6 +6,7 @@ import java.text.DecimalFormat;
 
 @Data
 public class MedicineDto {
+    private int Medicine_id;
     private int medicineTypeId;
     private String Medicine_name;
     private String medicine_card;
