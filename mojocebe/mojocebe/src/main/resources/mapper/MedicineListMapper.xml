@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mojocebe.mapper.MedicineListMapper">
+<!--    定义resultMap，定义了什么，最后返回的才有什么-->
+    <resultMap id="MedicineListMap" type="medicineList">
+        <result property="patient_id" column="patient_id"></result>
+        <result property="doctor_id" column="doctor_id"></result>
+    <association property="medicine" javaType="com.example.mojocebe.entity.Medicine">
+        <result property="medicine_id" column="medicine_id"/>
+        <result property="medicine_name" column="medicine_name"/>
+        <result property="price" column="price"></result>
+<!--        关联的表需要返回什么就在这里加-->
+    </association>
+    </resultMap>
     <select id="queryAll" resultType="com.example.mojocebe.entity.MedicineList">
-        select * from medicine_list
+        select *
+        from medicine_list
     </select>
+
+    <select id="selectByPId" resultMap="MedicineListMap">
+        select m.*,l.* from medicine m join medicine_list l on m.medicine_id = l.medicine_id where l.patient_id = #{patient_id};
+    </select>
+
+    <select id="selectByDId" resultMap="MedicineListMap">
+        select m.*,l.*  from medicine m join medicine_list l on m.medicine_id = l.medicine_id where l.doctor_id = #{doctor_id};
+    </select>
+
+    <insert id="add" parameterType="medicineList">
+        insert into medicine_list (patient_id,doctor_id,medicine_id) values (#{patient_id},#{doctor_id},#{medicine.medicine_id});
+    </insert>
+
+    <delete id="deleteById" parameterType="com.example.mojocebe.entity.MedicineList">
+        delete from medicine_list where id = #{id}
+    </delete>
 </mapper>

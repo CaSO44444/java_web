@@ -8,4 +8,5 @@ public class MedicineList {
     private int patient_id;
     private int doctor_id;
     private int medicine_id;
+    private Medicine medicine;
 }

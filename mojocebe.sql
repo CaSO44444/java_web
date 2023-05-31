@@ -386,6 +386,7 @@ BEGIN;
 INSERT INTO `medicine_list` VALUES (1, 1, 1, 1);
 INSERT INTO `medicine_list` VALUES (2, 2, 2, 2);
 INSERT INTO `medicine_list` VALUES (3, 3, 3, 3);
+INSERT INTO `medicine_list` VALUES (4, 1, 2, 3);
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
