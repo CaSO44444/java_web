@@ -35,8 +35,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
 //        registry.addInterceptor(userInterceptor)
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/user/**")
@@ -49,7 +49,7 @@ public class WebConfig implements WebMvcConfigurer {
 //        registry.addInterceptor(patientInterceptor)
 //                .addPathPatterns("/manager/**")
 //                .addPathPatterns("/doctor/**");
-    }
+//    }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
       // 设置允许跨域的路径
