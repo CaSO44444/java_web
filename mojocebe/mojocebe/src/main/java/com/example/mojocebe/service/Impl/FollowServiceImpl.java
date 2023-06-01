@@ -66,8 +66,8 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
-    public Follow find(Integer id) {
-        Follow follow = followMapper.find(id);
+    public List<Follow> find(Integer id) {
+        List<Follow> follow = followMapper.find(id);
         return follow;
     }
 }

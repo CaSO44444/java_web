@@ -54,7 +54,7 @@ public class FollowController {
 
     @PostMapping("/follow/find")
     public Result find(Integer id){
-        Follow follow= followService.find(id);
+        List<Follow> follow= followService.find(id);
         return new Result().ok(follow);
     }
 
