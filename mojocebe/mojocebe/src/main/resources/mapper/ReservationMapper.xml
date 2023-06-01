@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mojocebe.mapper.ReservationMapper">
     <resultMap id="reservationResultMap" type="com.example.mojocebe.entity.Reservation">
         <id property="id" column="id"></id>
-        <result property="doctorName" column="doctorname"></result>
+        <result property="doctor.doctor_name" column="doctor_name"></result>
         <result property="day" column="day"></result>
         <result property="size" column="size"></result>
         <result property="status" column="status"></result>
@@ -13,10 +13,10 @@
         <result property="title.title_name" column="title_name"></result>
     </resultMap>
 <select id="queryall" resultMap="reservationResultMap">
-    SELECT r.id ,r.doctorname,r.day,r.size,r.status,
-           d.dept_id,d.dept_name as dept_name,r.title,t.title_id,t.title_name as title_name
-    FROM reservation r, dept d, title t
-    WHERE r.dept =d.dept_id AND r.title =t.title_id and r.status=0
+    SELECT r.id ,r.day,r.size,r.status,
+           d.dept_id,d.dept_name as dept_name,r.title,t.title_id,t.title_name as title_name, doc.doctor_id,doc.doctor_name as doctor_name
+    FROM reservation r, dept d, title t, doctor doc
+    WHERE r.dept =d.dept_id AND r.title =t.title_id and r.doctor=doc.doctor_id
 </select>
     <insert id="add" parameterType="reservation">
         insert into reservation(doctorname,dept,title,day,size,status)

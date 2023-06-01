@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Reservation {
     private Integer id;
-    private String doctorName;
+    private Doctor doctor;
     private Dept dept;
     private Title title;
 
