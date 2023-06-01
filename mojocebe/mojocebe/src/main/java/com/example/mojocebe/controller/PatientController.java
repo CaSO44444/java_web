@@ -41,7 +41,7 @@ public class PatientController {
     @GetMapping("/patient/find")
     public Result find(Integer id){
         Patient patient= patientService.find(id);
-        System.out.println("传回区的数据"+patient);
+        System.out.println("传回去的数据"+patient);
         return new Result().ok(patient);
     }
 
