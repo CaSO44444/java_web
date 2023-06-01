@@ -14,7 +14,7 @@ public interface FollowService {
     void delete(Integer id);
     void BatchRemove(Integer[] integers);
     void edit(FollowDto followDto);
-    Follow find(Integer id);
+    Follow find(String doctor_name);
 
 
 

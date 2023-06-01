@@ -52,9 +52,9 @@ public class FollowController {
         return new Result().ok();
     }
 
-    @GetMapping("/follow/find")
-    public Result find(Integer id){
-        Follow follow= followService.find(id);
+    @PostMapping("/follow/find")
+    public Result find(String doctor_name){
+        Follow follow= followService.find(doctor_name);
         return new Result().ok(follow);
     }
 

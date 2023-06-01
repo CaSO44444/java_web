@@ -52,6 +52,6 @@
     <select id="find" resultMap="followResultMap">
         SELECT f.*,d.*,p.*
         FROM follow f join patient p on f.patient=p.id join doctor d on d.doctor_id = p.doctor
-        and id=#{id}
+        and doctor_name=#{doctor_name}
     </select>
 </mapper>
