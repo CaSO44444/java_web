@@ -14,7 +14,6 @@ public class Follow {
     private Patient patient;
     private Doctor doctor;
     private Date follow_date;
-
     private Date next_follow;
     private int status;
 }
