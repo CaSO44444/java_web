@@ -12,6 +12,8 @@ public interface ConsultationService {
 
     List<Consultation> selectBydoctorId(Integer docker_id, Integer status);
 
+    List<Consultation> selectBydoctorIdLim(Integer docker_id, Integer status, Integer pageSize, Integer pageNum);
+
     List<Consultation> selectBydate(Date time,String docker_id, String status);
 
     List<Consultation> selectByPatientName(String patient_name);

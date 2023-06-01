@@ -22,8 +22,14 @@ public class ConsultationServiceImpl implements ConsultationService {
     }
 
     public List<Consultation> selectBydoctorId(Integer docker_id, Integer status){
-        List<Consultation> selectBydoctorId = consultationMapper.selectBydoctorId(docker_id, status);
+        List<Consultation> selectBydoctorId = consultationMapper.selectBydoctorId(docker_id,status);
         return selectBydoctorId;
+    }
+    public List<Consultation> selectBydoctorIdLim(Integer docker_id, Integer status, Integer pageSize, Integer pageNum){
+        int start = pageSize * (pageNum - 1);
+        int end = pageSize * pageNum;
+        List<Consultation> selectBydoctorIdLim = consultationMapper.selectBydoctorIdLim(docker_id, status, start, end);
+        return selectBydoctorIdLim;
     }
 
     public List<Consultation> selectByPatientName(String patient_name){

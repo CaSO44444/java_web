@@ -29,6 +29,14 @@ public class ConsultationController {
         return new Result().ok(selectBydoctorId);
     }
 
+    @PostMapping("/consultation/selectBydoctorIdLim")
+    public Result selectBydoctorIdLim(@RequestParam String id, String status, Integer pageSize, Integer pageNum){
+        Integer doctor_id = Integer.parseInt(id);
+        Integer status_code = Integer.parseInt(status);
+        List<Consultation> selectBydoctorIdLim = consultationService.selectBydoctorIdLim(doctor_id, status_code, pageSize, pageNum);
+        return new Result().ok(selectBydoctorIdLim);
+    }
+
     @PostMapping("/consultation/selectBydate")
     public Result selectBytime(@RequestParam Date date, String docker_id, String status){
         List<Consultation> selectBytime = consultationService.selectBydate(date, docker_id, status);

@@ -1,27 +1,26 @@
--- MySQL dump 10.13  Distrib 5.7.26, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: mojocebe
--- ------------------------------------------------------
--- Server version	5.7.26
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+ Source Server         : mysql5.7
+ Source Server Type    : MySQL
+ Source Server Version : 50739 (5.7.39)
+ Source Host           : localhost:3306
+ Source Schema         : mojocebe
 
---
--- Table structure for table `consultation`
---
+ Target Server Type    : MySQL
+ Target Server Version : 50739 (5.7.39)
+ File Encoding         : 65001
 
+ Date: 01/06/2023 22:45:42
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for consultation
+-- ----------------------------
 DROP TABLE IF EXISTS `consultation`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `consultation` (
   `consultation_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) DEFAULT NULL,
@@ -36,74 +35,80 @@ CREATE TABLE `consultation` (
   `pay` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`consultation_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `consultation`
---
+-- ----------------------------
+-- Records of consultation
+-- ----------------------------
+BEGIN;
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (1, '门诊', 20231122, 1, 1, 81, 1, 12313, '2023-05-26', 1, 0, 1);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (2, '门诊', 20030314, 3, 2, 24, 1, 2345, '2023-05-27', 1, 1, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (3, '急诊', 2022222, 3, 3, 1, 1, 122, '2023-05-26', 3, 1, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (4, '急诊', 20323232, 4, 2, 1, 1, 33, '2023-05-27', 2, 1, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (5, '门诊', 2032332, 5, 1, 1, 1, 27, '2023-05-26', 1, 1, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (6, '门诊', 20231122, 11, 1, 81, 1, 1555, '2023-05-26', 1, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (7, '急诊', 20231122, 12, 1, 81, 1, 1555, '2023-05-26', 1, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (8, '门诊', 20231122, 7, 1, 81, 1, 1555, '2023-05-26', 1, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (9, NULL, 12313, 0, 0, 0, 0, 12313, '2023-06-07', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (10, NULL, 12313, 0, 0, 0, 0, 12313, '2023-06-05', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (11, NULL, 12313, 0, 0, 0, 0, 12313, '2023-06-05', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (12, NULL, 12313, 0, 0, 0, 0, 12313, '2023-06-05', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (13, NULL, 12313, 0, 0, 0, 0, 12313, '2023-06-05', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (14, NULL, 1231, 0, 0, 0, 0, 12313, '2023-05-30', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (15, NULL, 31213, 0, 0, 0, 0, 13213, '2023-06-14', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (16, '', 312313, 0, 0, 0, 0, 131313, '2023-05-30', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (17, '', 312313, 0, 0, 0, 0, 131313, '2023-05-30', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (18, '', 312313, 0, 0, 0, 0, 131313, '2023-05-30', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (19, '', 312313, 0, 0, 0, 0, 131313, '2023-05-30', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (20, '', 312313, 0, 0, 0, 0, 131313, '2023-05-30', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (21, '', 312313, 0, 0, 0, 0, 131313, '2023-05-30', 0, 0, 0);
+INSERT INTO `consultation` (`consultation_id`, `type`, `con_num`, `patient`, `dept`, `bed_num`, `doctor`, `money`, `time`, `medicine`, `pay`, `status`) VALUES (22, '', 312313, 0, 0, 0, 0, 131313, '2023-05-30', 0, 0, 0);
+COMMIT;
 
-LOCK TABLES `consultation` WRITE;
-/*!40000 ALTER TABLE `consultation` DISABLE KEYS */;
-INSERT INTO `consultation` VALUES (1,'门诊',20231122,1,1,81,1,12313,'2023-05-26',1,0,1),(2,'门诊',20030314,2,2,24,2,2345,'2023-05-27',1,1,1),(3,'急诊',2022222,3,3,1,2,122,'2023-05-26',3,1,0),(4,'急诊',20323232,4,2,1,1,33,'2023-05-27',2,1,1),(5,'门诊',2032332,5,1,1,1,27,'2023-05-26',1,1,0),(6,'门诊',20231122,1,1,81,1,1555,'2023-05-26',1,0,0),(7,'急诊',20231122,1,1,81,1,1555,'2023-05-26',1,0,0),(8,'门诊',20231122,1,1,81,1,1555,'2023-05-26',1,0,0);
-/*!40000 ALTER TABLE `consultation` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `dept`
---
-
+-- ----------------------------
+-- Table structure for dept
+-- ----------------------------
 DROP TABLE IF EXISTS `dept`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dept` (
   `dept_id` int(11) NOT NULL AUTO_INCREMENT,
   `dept_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`dept_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `dept`
---
+-- ----------------------------
+-- Records of dept
+-- ----------------------------
+BEGIN;
+INSERT INTO `dept` (`dept_id`, `dept_name`) VALUES (1, '外科');
+INSERT INTO `dept` (`dept_id`, `dept_name`) VALUES (2, '儿科');
+INSERT INTO `dept` (`dept_id`, `dept_name`) VALUES (3, '精神科');
+INSERT INTO `dept` (`dept_id`, `dept_name`) VALUES (4, '骨科');
+INSERT INTO `dept` (`dept_id`, `dept_name`) VALUES (5, '妇科');
+COMMIT;
 
-LOCK TABLES `dept` WRITE;
-/*!40000 ALTER TABLE `dept` DISABLE KEYS */;
-INSERT INTO `dept` VALUES (1,'外科'),(2,'儿科'),(3,'精神科'),(4,'骨科'),(5,'妇科');
-/*!40000 ALTER TABLE `dept` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `doctor`
---
-
+-- ----------------------------
+-- Table structure for doctor
+-- ----------------------------
 DROP TABLE IF EXISTS `doctor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `doctor` (
   `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
   `doctor_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`doctor_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `doctor`
---
+-- ----------------------------
+-- Records of doctor
+-- ----------------------------
+BEGIN;
+INSERT INTO `doctor` (`doctor_id`, `doctor_name`) VALUES (1, '王医师');
+INSERT INTO `doctor` (`doctor_id`, `doctor_name`) VALUES (2, '陈大夫');
+INSERT INTO `doctor` (`doctor_id`, `doctor_name`) VALUES (3, '罗专家');
+COMMIT;
 
-LOCK TABLES `doctor` WRITE;
-/*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (1,'王医师'),(2,'陈大夫'),(3,'罗专家');
-/*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `follow`
---
-
+-- ----------------------------
+-- Table structure for follow
+-- ----------------------------
 DROP TABLE IF EXISTS `follow`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `follow` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) DEFAULT NULL,
@@ -118,49 +123,43 @@ CREATE TABLE `follow` (
   KEY `follow` (`patient`) USING BTREE,
   CONSTRAINT `follow` FOREIGN KEY (`patient`) REFERENCES `patient` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `follow`
---
+-- ----------------------------
+-- Records of follow
+-- ----------------------------
+BEGIN;
+INSERT INTO `follow` (`id`, `type`, `title`, `patient`, `doctor`, `follow_date`, `next_follow`, `status`) VALUES (1, '电话', '2222', 1, 1, '2023-02-21', '2023-02-23', 1);
+INSERT INTO `follow` (`id`, `type`, `title`, `patient`, `doctor`, `follow_date`, `next_follow`, `status`) VALUES (2, '电话', '2231', 1, 2, '2023-02-21', '2023-02-23', 0);
+INSERT INTO `follow` (`id`, `type`, `title`, `patient`, `doctor`, `follow_date`, `next_follow`, `status`) VALUES (10, '12345678910', '024535', 1, 2, '2023-02-08', '2023-02-16', 0);
+INSERT INTO `follow` (`id`, `type`, `title`, `patient`, `doctor`, `follow_date`, `next_follow`, `status`) VALUES (11, '12345', '0324', 1, 1, NULL, NULL, 1);
+INSERT INTO `follow` (`id`, `type`, `title`, `patient`, `doctor`, `follow_date`, `next_follow`, `status`) VALUES (12, '123456789', '0432', 1, 1, NULL, NULL, 1);
+INSERT INTO `follow` (`id`, `type`, `title`, `patient`, `doctor`, `follow_date`, `next_follow`, `status`) VALUES (13, '1', '0', 1, 1, NULL, NULL, 1);
+INSERT INTO `follow` (`id`, `type`, `title`, `patient`, `doctor`, `follow_date`, `next_follow`, `status`) VALUES (14, '3', '0', 4, 1, NULL, NULL, 0);
+COMMIT;
 
-LOCK TABLES `follow` WRITE;
-/*!40000 ALTER TABLE `follow` DISABLE KEYS */;
-INSERT INTO `follow` VALUES (1,'电话','2222',1,1,'2023-02-21','2023-02-23',1),(2,'电话','2231',1,2,'2023-02-21','2023-02-23',0),(10,'12345678910','024535',1,2,'2023-02-08','2023-02-16',0),(11,'12345','0324',1,1,NULL,NULL,1),(12,'123456789','0432',1,1,NULL,NULL,1),(13,'1','0',1,1,NULL,NULL,1),(14,'3','0',4,1,NULL,NULL,0);
-/*!40000 ALTER TABLE `follow` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `manager`
---
-
+-- ----------------------------
+-- Table structure for manager
+-- ----------------------------
 DROP TABLE IF EXISTS `manager`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `manager` (
   `manager_id` int(11) NOT NULL AUTO_INCREMENT,
   `manager_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`manager_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `manager`
---
+-- ----------------------------
+-- Records of manager
+-- ----------------------------
+BEGIN;
+INSERT INTO `manager` (`manager_id`, `manager_name`) VALUES (1, '刘女士');
+INSERT INTO `manager` (`manager_id`, `manager_name`) VALUES (2, '李先生');
+INSERT INTO `manager` (`manager_id`, `manager_name`) VALUES (3, '黄总');
+COMMIT;
 
-LOCK TABLES `manager` WRITE;
-/*!40000 ALTER TABLE `manager` DISABLE KEYS */;
-INSERT INTO `manager` VALUES (1,'刘女士'),(2,'李先生'),(3,'黄总');
-/*!40000 ALTER TABLE `manager` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `medicine`
---
-
+-- ----------------------------
+-- Table structure for medicine
+-- ----------------------------
 DROP TABLE IF EXISTS `medicine`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `medicine` (
   `medicine_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` int(11) DEFAULT NULL,
@@ -177,25 +176,22 @@ CREATE TABLE `medicine` (
   KEY `medicine` (`vendor`) USING BTREE,
   CONSTRAINT `medicine` FOREIGN KEY (`vendor`) REFERENCES `vendor` (`vendor_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `medicine`
---
+-- ----------------------------
+-- Records of medicine
+-- ----------------------------
+BEGIN;
+INSERT INTO `medicine` (`medicine_id`, `type`, `medicine_name`, `medicine_card`, `model`, `price`, `medicine_num`, `unit`, `manager`, `vendor`, `status`) VALUES (1, 0, '9999感冒灵', 'dada', '121', 111.00, 223, '1', 1, 2, 0);
+INSERT INTO `medicine` (`medicine_id`, `type`, `medicine_name`, `medicine_card`, `model`, `price`, `medicine_num`, `unit`, `manager`, `vendor`, `status`) VALUES (2, 0, 'CaSo4', '12121', '2313', 222.00, 44, '1', 1, 1, 0);
+INSERT INTO `medicine` (`medicine_id`, `type`, `medicine_name`, `medicine_card`, `model`, `price`, `medicine_num`, `unit`, `manager`, `vendor`, `status`) VALUES (6, 0, 'haom', '2323', '123123', 122.00, 32332, '1321', 1, 2, 0);
+INSERT INTO `medicine` (`medicine_id`, `type`, `medicine_name`, `medicine_card`, `model`, `price`, `medicine_num`, `unit`, `manager`, `vendor`, `status`) VALUES (7, 1, 'ghwu', 'dadw212', 'dsa', 22.00, 2332, 'fds', 1, 1, 0);
+INSERT INTO `medicine` (`medicine_id`, `type`, `medicine_name`, `medicine_card`, `model`, `price`, `medicine_num`, `unit`, `manager`, `vendor`, `status`) VALUES (8, 1, '大家思考', '222', '11', 1.00, 11, '1', 1, 3, 0);
+COMMIT;
 
-LOCK TABLES `medicine` WRITE;
-/*!40000 ALTER TABLE `medicine` DISABLE KEYS */;
-INSERT INTO `medicine` VALUES (1,0,'9999感冒灵','dada','121',111.00,223,'1',1,2,0),(2,0,'CaSo4','12121','2313',222.00,44,'1',1,1,0),(6,0,'haom','2323','123123',122.00,32332,'1321',1,2,0),(7,1,'ghwu','dadw212','dsa',22.00,2332,'fds',1,1,0),(8,1,'大家思考','222','11',1.00,11,'1',1,3,0);
-/*!40000 ALTER TABLE `medicine` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `medicine_list`
---
-
+-- ----------------------------
+-- Table structure for medicine_list
+-- ----------------------------
 DROP TABLE IF EXISTS `medicine_list`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `medicine_list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `patient_id` int(11) DEFAULT NULL,
@@ -203,48 +199,56 @@ CREATE TABLE `medicine_list` (
   `medicine_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `medicine_list`
---
+-- ----------------------------
+-- Records of medicine_list
+-- ----------------------------
+BEGIN;
+COMMIT;
 
-LOCK TABLES `medicine_list` WRITE;
-/*!40000 ALTER TABLE `medicine_list` DISABLE KEYS */;
-/*!40000 ALTER TABLE `medicine_list` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `medicinetype`
---
-
+-- ----------------------------
+-- Table structure for medicinetype
+-- ----------------------------
 DROP TABLE IF EXISTS `medicinetype`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `medicinetype` (
   `type_id` int(11) NOT NULL,
   `type_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`type_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `medicinetype`
---
+-- ----------------------------
+-- Records of medicinetype
+-- ----------------------------
+BEGIN;
+INSERT INTO `medicinetype` (`type_id`, `type_name`) VALUES (0, '处方药');
+INSERT INTO `medicinetype` (`type_id`, `type_name`) VALUES (1, '非处方药');
+COMMIT;
 
-LOCK TABLES `medicinetype` WRITE;
-/*!40000 ALTER TABLE `medicinetype` DISABLE KEYS */;
-INSERT INTO `medicinetype` VALUES (0,'处方药'),(1,'非处方药');
-/*!40000 ALTER TABLE `medicinetype` ENABLE KEYS */;
-UNLOCK TABLES;
+-- ----------------------------
+-- Table structure for news
+-- ----------------------------
+DROP TABLE IF EXISTS `news`;
+CREATE TABLE `news` (
+  `Title` varchar(50) NOT NULL,
+  `Publisher` varchar(50) DEFAULT NULL,
+  `Pub_time` date DEFAULT NULL,
+  `Origin` varchar(50) DEFAULT NULL,
+  `Times` int(11) DEFAULT NULL,
+  `file` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`Title`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Table structure for table `patient`
---
+-- ----------------------------
+-- Records of news
+-- ----------------------------
+BEGIN;
+INSERT INTO `news` (`Title`, `Publisher`, `Pub_time`, `Origin`, `Times`, `file`) VALUES ('JAVA', 'DawnT0wn', '2023-04-25', 'D1no', 3, 'CaSO4');
+COMMIT;
 
+-- ----------------------------
+-- Table structure for patient
+-- ----------------------------
 DROP TABLE IF EXISTS `patient`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patient` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
@@ -259,26 +263,26 @@ CREATE TABLE `patient` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `doctor` (`doctor`) USING BTREE,
   CONSTRAINT `patient_ibfk_1` FOREIGN KEY (`doctor`) REFERENCES `doctor` (`doctor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
---
--- Dumping data for table `patient`
---
+-- ----------------------------
+-- Records of patient
+-- ----------------------------
+BEGIN;
+INSERT INTO `patient` (`id`, `name`, `gender`, `age`, `tel`, `id_card`, `address`, `doctor`, `follow`, `status`) VALUES (1, '张三', 1, 59, '12208172103', '511722200105282732', '中国成都', 1, 1, 0);
+INSERT INTO `patient` (`id`, `name`, `gender`, `age`, `tel`, `id_card`, `address`, `doctor`, `follow`, `status`) VALUES (3, '李四', 0, 12, '12', '21', '12', 1, 12, 0);
+INSERT INTO `patient` (`id`, `name`, `gender`, `age`, `tel`, `id_card`, `address`, `doctor`, `follow`, `status`) VALUES (4, '王五', 0, 78, '13208172103', '511172220010537373', '四川成都十陵', 1, 1, 0);
+INSERT INTO `patient` (`id`, `name`, `gender`, `age`, `tel`, `id_card`, `address`, `doctor`, `follow`, `status`) VALUES (5, '小明', 0, 67, '13208172103', '12355542', '四川成都', 1, 23, 0);
+INSERT INTO `patient` (`id`, `name`, `gender`, `age`, `tel`, `id_card`, `address`, `doctor`, `follow`, `status`) VALUES (6, '小红', 0, 12, '123', '1234', '12345', 1, 123, 0);
+INSERT INTO `patient` (`id`, `name`, `gender`, `age`, `tel`, `id_card`, `address`, `doctor`, `follow`, `status`) VALUES (7, '李自勤', 0, 1, '1', '1', '1', 1, 1, 0);
+INSERT INTO `patient` (`id`, `name`, `gender`, `age`, `tel`, `id_card`, `address`, `doctor`, `follow`, `status`) VALUES (11, '小李', 0, 22, '3213213', '3213213', '321321', 1, 321, 0);
+INSERT INTO `patient` (`id`, `name`, `gender`, `age`, `tel`, `id_card`, `address`, `doctor`, `follow`, `status`) VALUES (12, '刘奕俊', 0, 22, '134567', '54112', '成都', 1, 333, 0);
+COMMIT;
 
-LOCK TABLES `patient` WRITE;
-/*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (1,'张三',1,59,'12208172103','511722200105282732','中国成都',1,1,0),(3,'李四',0,12,'12','21','12',1,12,1),(4,'王五',0,78,'13208172103','511172220010537373','四川成都十陵',1,1,0),(5,'小明',0,67,'13208172103','12355542','四川成都',1,23,0),(6,'小红',0,12,'123','1234','12345',1,123,1),(7,'1',0,1,'1','1','1',1,1,0),(11,'小李',0,22,'3213213','3213213','321321',1,321,0);
-/*!40000 ALTER TABLE `patient` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `reservation`
---
-
+-- ----------------------------
+-- Table structure for reservation
+-- ----------------------------
 DROP TABLE IF EXISTS `reservation`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reservation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dept` int(11) DEFAULT NULL,
@@ -295,76 +299,69 @@ CREATE TABLE `reservation` (
   CONSTRAINT `reservation` FOREIGN KEY (`dept`) REFERENCES `dept` (`dept_id`),
   CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`title`) REFERENCES `title` (`title_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `reservation`
---
+-- ----------------------------
+-- Records of reservation
+-- ----------------------------
+BEGIN;
+INSERT INTO `reservation` (`id`, `dept`, `title`, `day`, `size`, `status`, `doctor`) VALUES (1, 1, 1, 143, 12, 1, 1);
+INSERT INTO `reservation` (`id`, `dept`, `title`, `day`, `size`, `status`, `doctor`) VALUES (2, 2, 2, 34, 34, 1, 2);
+INSERT INTO `reservation` (`id`, `dept`, `title`, `day`, `size`, `status`, `doctor`) VALUES (3, 1, 2, 12, 23, 1, 1);
+INSERT INTO `reservation` (`id`, `dept`, `title`, `day`, `size`, `status`, `doctor`) VALUES (4, 2, 1, 12, 2, 1, 1);
+INSERT INTO `reservation` (`id`, `dept`, `title`, `day`, `size`, `status`, `doctor`) VALUES (5, 2, 2, 22, 12, 1, 1);
+INSERT INTO `reservation` (`id`, `dept`, `title`, `day`, `size`, `status`, `doctor`) VALUES (6, 2, 2, 12, 34, 0, 1);
+COMMIT;
 
-LOCK TABLES `reservation` WRITE;
-/*!40000 ALTER TABLE `reservation` DISABLE KEYS */;
-INSERT INTO `reservation` VALUES (1,1,1,143,12,1,1),(2,2,2,34,34,1,2),(3,1,2,12,23,1,1),(4,2,1,12,2,1,1),(5,2,2,22,12,1,1),(6,2,2,12,34,0,1);
-/*!40000 ALTER TABLE `reservation` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `t_user`
---
-
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `t_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `roles` int(11) DEFAULT '0',
+  `roles` int(11) DEFAULT '2',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `t_user`
---
+-- ----------------------------
+-- Records of t_user
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`, `roles`) VALUES (1, 'admin', 'admin', 0, 1);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`, `roles`) VALUES (3, 'test', 'test', 0, 0);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`, `roles`) VALUES (4, 'test2', 'test2', 0, 1);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`, `roles`) VALUES (5, 'test3', 'test3', 0, 1);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`, `roles`) VALUES (6, '12312312', '1', 0, NULL);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`, `roles`) VALUES (7, '123123', '123', 0, NULL);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`, `roles`) VALUES (8, 'DawnT0wn', '123', 0, NULL);
+INSERT INTO `t_user` (`id`, `username`, `password`, `status`, `roles`) VALUES (9, 'DawnT0wn2', '123', 0, 2);
+COMMIT;
 
-LOCK TABLES `t_user` WRITE;
-/*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` VALUES (1,'admin','admin',0,1),(3,'test','test',0,0),(4,'test2','test2',0,1),(5,'test3','test3',0,1),(6,'12312312','1',0,NULL),(7,'123123','123',0,NULL),(8,'DawnT0wn','123',0,NULL),(9,'DawnT0wn2','123',0,2);
-/*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `title`
---
-
+-- ----------------------------
+-- Table structure for title
+-- ----------------------------
 DROP TABLE IF EXISTS `title`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `title` (
   `title_id` int(11) NOT NULL AUTO_INCREMENT,
   `title_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`title_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `title`
---
+-- ----------------------------
+-- Records of title
+-- ----------------------------
+BEGIN;
+INSERT INTO `title` (`title_id`, `title_name`) VALUES (1, '院长');
+INSERT INTO `title` (`title_id`, `title_name`) VALUES (2, '主任医师');
+INSERT INTO `title` (`title_id`, `title_name`) VALUES (3, '专家');
+COMMIT;
 
-LOCK TABLES `title` WRITE;
-/*!40000 ALTER TABLE `title` DISABLE KEYS */;
-INSERT INTO `title` VALUES (1,'院长'),(2,'主任医师'),(3,'专家');
-/*!40000 ALTER TABLE `title` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `vendor`
---
-
+-- ----------------------------
+-- Table structure for vendor
+-- ----------------------------
 DROP TABLE IF EXISTS `vendor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `vendor` (
   `vendor_id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) DEFAULT NULL,
@@ -381,25 +378,20 @@ CREATE TABLE `vendor` (
   KEY `doctor` (`doctor`) USING BTREE,
   CONSTRAINT `vendor_ibfk_1` FOREIGN KEY (`doctor`) REFERENCES `doctor` (`doctor_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `vendor`
---
+-- ----------------------------
+-- Records of vendor
+-- ----------------------------
+BEGIN;
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (1, '政府', '百信', '5级', 0, 10000, '北京 北京', '北京市西二旗中路西侧', 1, 1);
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (2, '私人', '云南白药', '7级', 0, 1990, '云南 昆明', '昆明解放大街', 1, 1);
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (3, '私人', '华润', '6级', 0, 2880, '广东 深圳', '深圳南山区', 1, 1);
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (10, '2', '1', '1', 1, 1, '1', '1', 1, 2);
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (11, '1', NULL, NULL, 1, 0, NULL, NULL, 0, 2);
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (12, '1', NULL, NULL, 1, 0, NULL, NULL, 0, 1);
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (13, '1', '1', '1', 1, 1, '1', '1', 1, 1);
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (14, '1', '1', '1', 1, 1, '1', '1', 1, 1);
+INSERT INTO `vendor` (`vendor_id`, `type`, `vendor_name`, `level`, `status`, `num`, `province`, `address`, `manager`, `doctor`) VALUES (15, '甲甲', '甲', '6级', 0, 22, '江西', '十陵街道成都大学', 2, 1);
+COMMIT;
 
-LOCK TABLES `vendor` WRITE;
-/*!40000 ALTER TABLE `vendor` DISABLE KEYS */;
-INSERT INTO `vendor` VALUES (1,'政府','百信','5级',0,10000,'北京 北京','北京市西二旗中路西侧',1,1),(2,'私人','云南白药','7级',0,1990,'云南 昆明','昆明解放大街',1,1),(3,'私人','华润','6级',0,2880,'广东 深圳','深圳南山区',1,1),(10,'2','1','1',1,1,'1','1',1,2),(11,'1',NULL,NULL,1,0,NULL,NULL,0,2),(12,'1',NULL,NULL,1,0,NULL,NULL,0,1),(13,'1','1','1',1,1,'1','1',1,1),(14,'1','1','1',1,1,'1','1',1,1),(15,'甲甲','甲','6级',0,22,'江西','十陵街道成都大学',2,1);
-/*!40000 ALTER TABLE `vendor` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2023-06-01 20:21:52
+SET FOREIGN_KEY_CHECKS = 1;
