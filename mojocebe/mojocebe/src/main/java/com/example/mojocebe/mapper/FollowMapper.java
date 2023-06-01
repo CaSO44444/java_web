@@ -15,6 +15,6 @@ public interface FollowMapper{
 
     void delete(Integer id);
     void edit(Follow follow);
-    Follow find(String doctor_name);
+    Follow find(Integer id);
 
 }
