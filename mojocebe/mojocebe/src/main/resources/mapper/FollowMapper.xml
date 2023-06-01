@@ -20,7 +20,7 @@
     </resultMap>
     <select id="queryall" resultMap="followResultMap">
         SELECT f.*,d.*,p.*
-        FROM follow f join patient p on f.patient=p.id join doctor d on d.doctor_id = p.doctor and f.status=0
+        FROM follow f join patient p on f.patient=p.id join doctor d on d.doctor_id = p.doctor
     </select>
 
     <insert id="add" parameterType="follow">
