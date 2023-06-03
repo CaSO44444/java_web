@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtUtils {
-    public static final long EXPIRE = 1000 * 60 * 60 * 24;
+    public static final long EXPIRE = 1000 * 60 * 60 * 6; // 3600000毫秒为1小时，这里是24小时
     // 签名哈希的密钥，对于不同的加密算法来说含义不同
     public static final String APP_SECRET = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";
 
@@ -22,6 +22,9 @@ public class JwtUtils {
      * @return JWT规则生成的token
      */
     public static String getJwtToken(String id, String name, String roles){
+
+//        long EXPIRE = 3600000 * 6; // 设置失效时间为6小时，单位为毫秒
+
         String JwtToken = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
