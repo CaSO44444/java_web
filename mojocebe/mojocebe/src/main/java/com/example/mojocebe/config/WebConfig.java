@@ -35,21 +35,20 @@ public class WebConfig implements WebMvcConfigurer {
 
     }
 
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(userInterceptor)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/user/**")
-//                .excludePathPatterns("/user/register")
-//                .excludePathPatterns("/dept/query")
-//                .excludePathPatterns("/webmvc/**")
-//                .excludePathPatterns("/common/**");
-//        registry.addInterceptor(doctorInterceptor)
-//                .addPathPatterns("/manager/**");
-//        registry.addInterceptor(patientInterceptor)
-//                .addPathPatterns("/manager/**")
-//                .addPathPatterns("/doctor/**");
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(userInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/user/**")
+                .excludePathPatterns("/checkToken")
+                .excludePathPatterns("/webmvc/**")
+                .excludePathPatterns("/common/**");
+        registry.addInterceptor(doctorInterceptor)
+                .addPathPatterns("/manager/**");
+        registry.addInterceptor(patientInterceptor)
+                .addPathPatterns("/manager/**")
+                .addPathPatterns("/doctor/**");
+    }
     @Override
     public void addCorsMappings(CorsRegistry registry) {
       // 设置允许跨域的路径
