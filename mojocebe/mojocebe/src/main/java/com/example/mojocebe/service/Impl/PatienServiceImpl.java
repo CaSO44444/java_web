@@ -24,6 +24,12 @@ public class PatienServiceImpl implements PatientService {
     }
 
     @Override
+    public List<Patient> queryById(Integer patien_id){
+        List<Patient> queryById = patientMapper.queryById(patien_id);
+        return queryById;
+    }
+
+    @Override
     public void add(PatientDto patientDto) {
         Patient patient = new Patient();
         BeanUtils.copyProperties(patientDto,patient);

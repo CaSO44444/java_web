@@ -8,10 +8,7 @@ import com.example.mojocebe.service.PatientService;
 import com.example.mojocebe.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class PatientController {
     private PatientService patientService;
 
 
-    @GetMapping("/patients/query")
+    @GetMapping("/patient/query")
     public Result queryall() {
         List<Patient> queryall = patientService.queryall();
         if (queryall != null) {
@@ -30,6 +27,15 @@ public class PatientController {
         return new Result().error("错误!");
     }
 
+    @PostMapping("/patient/queryById")
+    public Result queryById(@RequestParam String id) {
+        Integer patient_id = Integer.parseInt(id);
+        List<Patient> queryById = patientService.queryById(patient_id);
+        if (queryById != null) {
+            return new Result<>().ok(queryById);
+        }
+        return new Result().error("错误!");
+    }
     @PostMapping("/patient/add")
     public Result add(@RequestBody PatientDto patientDto) {
         System.out.println(patientDto);

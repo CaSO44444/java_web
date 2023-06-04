@@ -21,6 +21,10 @@
         WHERE p.doctor =d.doctor_id and p.status=0
     </select>
 
+    <select id="queryById" resultMap="patientResultMap">
+        select * from patient where id = #{patient_id}
+    </select>
+
     <insert id="add" parameterType="reservation">
         insert into patient(name,gender,age,tel,id_card,address,doctor,follow,status)
         values (#{name},#{gender},#{age},#{tel},#{id_card},#{address},#{doctor.doctor_id},#{follow},#{status})

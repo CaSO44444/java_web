@@ -9,6 +9,8 @@ import java.util.List;
 @Service
 public interface PatientService {
     List<Patient> queryall();
+
+    List<Patient> queryById(Integer patient_id);
     void add(PatientDto patientDto);
 
     void edit(PatientDto patientDto);

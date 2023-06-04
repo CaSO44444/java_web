@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface PatientMapper {
     List<Patient> queryall();
+    List<Patient> queryById(Integer patient_id);
     void add(Patient patient);
     void edit(Patient patient);
     Patient find(Integer id);
