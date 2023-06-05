@@ -86,6 +86,6 @@
     </update>
 
     <update id="update_status" parameterType="consultation">
-            update consultation set status=#{status} where consultation_id = #{id}
+            update consultation set status=#{status} where consultation_id=#{consultation_id}
     </update>
 </mapper>
