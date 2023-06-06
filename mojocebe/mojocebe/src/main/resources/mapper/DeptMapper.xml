@@ -4,8 +4,9 @@
     <resultMap id="resultMap" type="com.example.mojocebe.entity.Dept">
         <id property="dept_id" column="dept_id"/>
         <result property="dept_name" column="dept_name"/>
+        <result property="price" column="price"/>
     </resultMap>
     <select id="queryalldept" resultType="com.example.mojocebe.entity.Dept">
-        select dept_name from dept
+        select dept_name,price from dept
     </select>
 </mapper>

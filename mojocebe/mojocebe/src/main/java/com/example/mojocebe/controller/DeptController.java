@@ -22,7 +22,6 @@ public class DeptController {
     @GetMapping ("/dept/query")
     public Result querydept(){
         List<Dept> queryall = deptService.queryall();
-        List<String> stringList = queryall.stream().map(Dept::getDept_name).collect(Collectors.toList());
-        return new Result().ok(stringList);
+        return new Result().ok(queryall);
     }
 }

@@ -10,4 +10,5 @@ import lombok.Setter;
 public class Dept {
     private Integer dept_id;
     private String dept_name;
+    private String price;
 }
