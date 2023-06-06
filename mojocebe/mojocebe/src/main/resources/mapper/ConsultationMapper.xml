@@ -41,9 +41,9 @@
     </select>
 
     <select id="selectBydoctorIdLim" resultMap="consultationResultMap">
-        SELECT c.*,d.*,p.*,de.*,m.*
+        SELECT c.*,d.*,p.*,de.*
         FROM consultation c join patient p on c.patient=p.id join doctor d on d.doctor_id = p.doctor
-        join dept de on c.dept=de.dept_id join medicine m on c.medicine=m.medicine_id where d.doctor_id=#{docker_id} and c.status=#{status} limit #{start},#{end}
+        join dept de on c.dept=de.dept_id where d.doctor_id=#{docker_id} and c.status=#{status} limit #{start},#{end}
     </select>
 
     <select id="selectByPatientName" resultMap="consultationResultMap">

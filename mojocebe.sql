@@ -36,7 +36,7 @@ CREATE TABLE `consultation` (
   `pay` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   PRIMARY KEY (`consultation_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `consultation` (
 
 LOCK TABLES `consultation` WRITE;
 /*!40000 ALTER TABLE `consultation` DISABLE KEYS */;
-INSERT INTO `consultation` VALUES (1,'门诊',20231122,1,1,81,2,12313,'2023-05-26',1,0,1),(3,'门诊',20323232,3,2,1,2,33,'2023-05-27',2,0,0),(9,'急诊',20230202,4,1,123,1,2121,'2023-06-10',1,0,0),(15,'门诊',843,8,1,0,2,10,NULL,0,0,0),(16,'门诊',117,8,1,0,1,10,'2023-05-31',0,0,0),(17,'门诊',36,8,2,0,2,20,'2023-05-31',0,0,0);
+INSERT INTO `consultation` VALUES (1,'门诊',20231122,1,1,81,2,12313,'2023-05-26',1,0,1),(2,'门诊',20323232,3,2,1,2,33,'2023-05-27',2,0,0),(3,'急诊',20230202,4,1,123,1,2121,'2023-06-10',1,0,0),(4,'门诊',843,8,1,0,2,10,NULL,0,0,0),(5,'门诊',117,8,1,0,1,10,'2023-05-31',0,0,0),(6,'门诊',36,8,2,0,2,20,'2023-05-31',0,0,0);
 /*!40000 ALTER TABLE `consultation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +118,7 @@ CREATE TABLE `follow` (
   KEY `doctor` (`doctor`) USING BTREE,
   KEY `follow` (`patient`) USING BTREE,
   CONSTRAINT `follow` FOREIGN KEY (`patient`) REFERENCES `patient` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +127,7 @@ CREATE TABLE `follow` (
 
 LOCK TABLES `follow` WRITE;
 /*!40000 ALTER TABLE `follow` DISABLE KEYS */;
-INSERT INTO `follow` VALUES (1,'电话','2222',1,1,'2023-02-21','2023-02-23',1),(2,'电话','2231',1,2,'2023-02-21','2023-02-23',0),(10,'12345678910','024535',1,2,'2023-02-08','2023-02-16',0),(11,'12345','0324',1,1,NULL,NULL,1),(12,'123456789','0432',1,1,NULL,NULL,1),(13,'1','0',1,1,NULL,NULL,1),(14,'3','0',4,1,NULL,NULL,0);
+INSERT INTO `follow` VALUES (1,'电话','2222',1,1,'2023-02-21','2023-02-23',1);
 /*!40000 ALTER TABLE `follow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +260,7 @@ CREATE TABLE `patient` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `doctor` (`doctor`) USING BTREE,
   CONSTRAINT `patient_ibfk_1` FOREIGN KEY (`doctor`) REFERENCES `doctor` (`doctor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,7 +269,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (1,'张三',1,59,'12208172103','511722200105282732','中国成都',2,1,0),(3,'李四',0,12,'12','21','12',1,12,1),(4,'王五',0,78,'13208172103','511172220010537373','四川成都十陵',1,1,0),(5,'小明',0,67,'13208172103','12355542','四川成都',2,23,0),(6,'小红',0,12,'123','1234','12345',2,123,1),(8,'1',0,1,'1','1','1',2,1,0),(9,'小李',0,22,'3213213','3213213','321321',2,321,0);
+INSERT INTO `patient` VALUES (1,'张三',1,59,'12208172103','511722200105282732','中国成都',2,1,0),(2,'李四',0,12,'12','21','12',1,12,1),(3,'王五',0,78,'13208172103','511172220010537373','四川成都十陵',1,1,0),(4,'小明',0,67,'13208172103','12355542','四川成都',2,23,0),(5,'小红',0,12,'123','1234','12345',2,123,1),(6,'1',0,1,'1','1','1',2,1,0),(7,'小李',0,22,'3213213','3213213','321321',2,321,0);
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +322,7 @@ CREATE TABLE `t_user` (
   `status` int(11) DEFAULT NULL,
   `roles` int(11) DEFAULT '0',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +331,7 @@ CREATE TABLE `t_user` (
 
 LOCK TABLES `t_user` WRITE;
 /*!40000 ALTER TABLE `t_user` DISABLE KEYS */;
-INSERT INTO `t_user` VALUES (1,'admin','admin',0,1),(2,'test2','test2',0,1),(3,'test','test',0,0),(5,'test3','test3',0,1),(6,'12312312','1',0,NULL),(7,'123123','123',0,NULL),(8,'DawnT0wn','123',0,2),(9,'DawnT0wn2','123',0,2);
+INSERT INTO `t_user` VALUES (1,'admin','admin',0,1),(2,'test2','test2',0,1),(3,'test','test',0,0),(4,'test3','test3',0,1),(5,'12312312','1',0,NULL),(6,'123123','123',0,NULL),(7,'DawnT0wn','123',0,2),(8,'DawnT0wn2','123',0,2);
 /*!40000 ALTER TABLE `t_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
