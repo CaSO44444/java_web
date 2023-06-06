@@ -14,12 +14,10 @@ public class Consultation {
     private int bed_num;
     private Doctor doctor;
     private Float money;
-
     private Date time;
     private Medicine medicine;
     private int pay;
     private int status;
-
     public int getConsultation_id() {
         return consultation_id;
     }
