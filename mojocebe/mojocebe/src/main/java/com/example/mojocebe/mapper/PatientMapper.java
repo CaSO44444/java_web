@@ -13,7 +13,7 @@ public interface PatientMapper {
     Patient find(Integer id);
 
     void BatchRemove(Integer[] ids);
-
+    void editbyid(Integer patientID, Integer doctorID);
 
     void delete(Integer id);
 

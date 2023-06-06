@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ReservationDto {
-    private String doctorName;
+    private String doctorId;
     private Integer deptId;
     private Integer titleId;
     private Integer day;

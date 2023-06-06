@@ -5,6 +5,7 @@ import com.example.mojocebe.entity.Doctor;
 import com.example.mojocebe.entity.Patient;
 import com.example.mojocebe.mapper.PatientMapper;
 import com.example.mojocebe.service.PatientService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,11 @@ public class PatienServiceImpl implements PatientService {
     public Patient find(Integer id) {
         Patient patient = patientMapper.find(id);
         return patient;
+    }
+
+
+    public void editbyid(Integer patientID, Integer doctorID){
+        patientMapper.editbyid(patientID,doctorID);
     }
 
     @Override

@@ -47,7 +47,6 @@ public class PatientController {
     @GetMapping("/patient/find")
     public Result find(Integer id){
         Patient patient= patientService.find(id);
-        System.out.println("传回去的数据"+patient);
         return new Result().ok(patient);
     }
 
@@ -56,6 +55,14 @@ public class PatientController {
     public Result edit(@RequestBody PatientDto patientDto){
 
         patientService.edit(patientDto);
+        return new Result().ok();
+    }
+
+    @PostMapping("/patient/editById")
+    public Result edit(@RequestParam String patient_ID, String doctor_ID){
+        Integer patientID = Integer.parseInt(patient_ID);
+        Integer doctorID = Integer.parseInt(doctor_ID);
+        patientService.editbyid(patientID,doctorID);
         return new Result().ok();
     }
 

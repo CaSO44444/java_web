@@ -42,7 +42,9 @@
         WHERE r.doctor =d.doctor_id and id=#{id}
     </select>
 
-
+    <update id="editbyid" parameterType="patient">
+        UPDATE patient SET doctor=#{doctorID} WHERE id=#{patientID}
+    </update>
 
     <delete id="delete" parameterType="int">
         update  patient

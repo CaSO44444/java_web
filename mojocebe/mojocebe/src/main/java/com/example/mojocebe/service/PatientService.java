@@ -14,7 +14,7 @@ public interface PatientService {
     void add(PatientDto patientDto);
 
     void edit(PatientDto patientDto);
-
+    void editbyid(Integer patientID, Integer doctorID);
     Patient find(Integer id);
 
     void delete(Integer id);
