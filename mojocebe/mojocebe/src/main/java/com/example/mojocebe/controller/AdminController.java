@@ -26,19 +26,21 @@ public class AdminController {
     @PostMapping("/create")
     public Result createAdmin(@RequestBody AdminDto adminDto) {
         adminService.createAdmin(adminDto);
-        return new Result().ok("Admin created successfully.");
+        return new Result().ok("Admin created successfully");
     }
 
-    @PutMapping("/update")
+//    @PutMapping("/update")
+    @PostMapping("/update")
     public Result updateAdmin(@RequestBody AdminDto adminDto) {
         adminService.updateAdmin(adminDto);
-        return new Result().ok("Admin updated successfully.");
+        return new Result().ok("Admin updated successfully");
     }
 
-    @DeleteMapping("/delete/")
-    public Result<String> deleteAdmin(@RequestParam int id) {
+//    @DeleteMapping("/delete")
+    @PostMapping("/delete")
+    public Result<String> deleteAdmin(@RequestParam Integer id) {
         adminService.deleteAdmin(id);
-        return new Result().ok("Admin deleted successfully.");
+        return new Result().ok("Admin deleted successfully");
     }
 }
 

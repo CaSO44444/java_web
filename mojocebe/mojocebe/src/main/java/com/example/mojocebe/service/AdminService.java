@@ -11,5 +11,5 @@ public interface AdminService {
     List<Admin> getAllAdmins();
     void createAdmin(AdminDto adminDto);
     void updateAdmin(AdminDto adminDto);
-    void deleteAdmin(int id);
+    void deleteAdmin(Integer id);
 }

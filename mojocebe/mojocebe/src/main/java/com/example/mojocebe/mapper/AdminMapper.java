@@ -8,5 +8,5 @@ public interface AdminMapper {
     List<Admin> getAllAdmins();
     void createAdmin(Admin admin);
     void updateAdmin(Admin admin);
-    void deleteAdmin(int id);
+    void deleteAdmin(Integer id);
 }
