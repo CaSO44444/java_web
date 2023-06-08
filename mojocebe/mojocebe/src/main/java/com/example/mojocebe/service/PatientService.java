@@ -19,5 +19,5 @@ public interface PatientService {
 
     void delete(Integer id);
     void BatchRemove(Integer[] integers);
-    void registerAdd(String name, String tel, String id_card);
+    void registerAdd(Integer id, String name, String tel, String id_card);
 }

@@ -77,7 +77,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void registerAdd(String name, String tel, String id_card) {
-        patientMapper.registerAdd(name, tel, id_card);
+    public void registerAdd(Integer id,String name, String tel, String id_card) {
+        patientMapper.registerAdd(id, name, tel, id_card);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mojocebe.controller;
 
+import com.example.mojocebe.entity.Patient;
 import com.example.mojocebe.entity.User;
 import com.example.mojocebe.service.DoctorService;
 import com.example.mojocebe.service.PatientService;
@@ -56,12 +57,15 @@ public class UserController {
             if(verifyCode.equals(kaptchaCode)){
                 if (password.equals(check_password)){
                     if (roles == 1){
-                        doctorService.registerAdd(name,departmentname);
                         userService.register(username, password, roles);
+                        Integer id = userService.find(username).getId();
+                        doctorService.registerAdd(id, name,departmentname);
                         return new Result<>().ok();
                     }else if (roles == 2){
-                        patientService.registerAdd(name,tel,id_card);
                         userService.register(username, password, roles);
+                        Integer id = userService.find(username).getId();
+                        patientService.registerAdd(id, name,tel,id_card);
+
                         return new Result<>().ok();
                     }else {
                         return new Result<>().error("role错误");

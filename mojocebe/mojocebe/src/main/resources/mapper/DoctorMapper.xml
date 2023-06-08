@@ -6,6 +6,6 @@
     </select>
 
     <insert id="registerAdd" parameterType="Doctor">
-        insert into doctor(doctor_name, dept_name) values (#{name},#{dept_name})
+        insert into doctor(id, doctor_name, dept_name) values (#{id}, #{name},#{dept_name})
     </insert>
 </mapper>

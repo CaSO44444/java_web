@@ -63,6 +63,6 @@
     </delete>
 
     <insert id="registerAdd" parameterType="reservation">
-        insert into patient(name, tel, id_card) values (#{name},#{tel},#{id_card})
+        insert into patient(id, name, tel, id_card) values (#{id},#{name},#{tel},#{id_card})
     </insert>
 </mapper>

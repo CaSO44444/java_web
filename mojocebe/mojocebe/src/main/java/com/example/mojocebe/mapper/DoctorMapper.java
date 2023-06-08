@@ -8,5 +8,5 @@ import java.util.List;
 public interface DoctorMapper {
     List<Doctor> queryalldoctor();
 
-    void registerAdd(String name, String dept_name);
+    void registerAdd(Integer id, String name, String dept_name);
 }
