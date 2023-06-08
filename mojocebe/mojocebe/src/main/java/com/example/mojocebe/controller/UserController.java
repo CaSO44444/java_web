@@ -1,6 +1,8 @@
 package com.example.mojocebe.controller;
 
 import com.example.mojocebe.entity.User;
+import com.example.mojocebe.service.DoctorService;
+import com.example.mojocebe.service.PatientService;
 import com.example.mojocebe.service.UserService;
 import com.example.mojocebe.utils.JwtUtils;
 import com.example.mojocebe.utils.Result;
@@ -19,8 +21,10 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
-
-
+    @Autowired
+    private DoctorService doctorService;
+    @Autowired
+    private PatientService patientService;
     @PostMapping("/user/login")
     public Result login(String username, String password, String verifyCode, HttpServletRequest httpServletRequest, HttpServletResponse response) {
         if (verifyCode.equals(httpServletRequest.getSession().getAttribute("verifyCode"))){
@@ -43,7 +47,7 @@ public class UserController {
     }
 
     @PostMapping("/user/register")
-    public Result register(String username, String password, String check_password, String verifyCode, Integer roles, HttpServletRequest httpServletRequest) {
+    public Result register(String username, String password, String check_password, String verifyCode, Integer roles, String name, String tel, String id_card, String departmentname, HttpServletRequest httpServletRequest) {
         User user = userService.find(username);
         if (user == null){
             HttpSession session = httpServletRequest.getSession();
@@ -51,8 +55,17 @@ public class UserController {
             System.out.println(kaptchaCode);
             if(verifyCode.equals(kaptchaCode)){
                 if (password.equals(check_password)){
-                    userService.register(username, password, roles);
-                    return new Result<>().ok();
+                    if (roles == 1){
+                        doctorService.registerAdd(name,departmentname);
+                        userService.register(username, password, roles);
+                        return new Result<>().ok();
+                    }else if (roles == 2){
+                        patientService.registerAdd(name,tel,id_card);
+                        userService.register(username, password, roles);
+                        return new Result<>().ok();
+                    }else {
+                        return new Result<>().error("role错误");
+                    }
                 }else{
                     return new Result<>().error("两次输入密码不一致");
                 }
