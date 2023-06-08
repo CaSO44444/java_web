@@ -16,6 +16,7 @@ public interface PatientMapper {
     void editbyid(Integer patientID, Integer doctorID);
 
     void delete(Integer id);
+    void registerAdd(String name, String tel, String id_card);
 
 
 }

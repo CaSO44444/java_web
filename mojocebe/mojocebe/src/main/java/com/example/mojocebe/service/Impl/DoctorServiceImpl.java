@@ -18,4 +18,9 @@ public class DoctorServiceImpl implements DoctorService {
         List<Doctor> queryalldoctor = doctorMapper.queryalldoctor();
         return queryalldoctor;
     }
+
+    @Override
+    public void registerAdd(String name){
+        doctorMapper.registerAdd(name);
+    }
 }

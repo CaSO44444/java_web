@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface DoctorService {
     List<Doctor> queryalldoctor();
+
+    void registerAdd(String name);
 }

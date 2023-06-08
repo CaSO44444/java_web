@@ -4,4 +4,8 @@
     <select id="queryalldoctor" resultType="com.example.mojocebe.entity.Doctor">
         select * from doctor
     </select>
+
+    <insert id="registerAdd" parameterType="Doctor">
+        insert into doctor(doctor_name) values (#{name})
+    </insert>
 </mapper>

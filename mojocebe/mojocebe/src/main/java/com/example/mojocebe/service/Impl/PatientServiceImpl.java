@@ -5,7 +5,6 @@ import com.example.mojocebe.entity.Doctor;
 import com.example.mojocebe.entity.Patient;
 import com.example.mojocebe.mapper.PatientMapper;
 import com.example.mojocebe.service.PatientService;
-import io.swagger.models.auth.In;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PatienServiceImpl implements PatientService {
+public class PatientServiceImpl implements PatientService {
 
     @Autowired
     private PatientMapper patientMapper;
@@ -75,5 +74,10 @@ public class PatienServiceImpl implements PatientService {
     @Override
     public void BatchRemove(Integer[] integers) {
         patientMapper.BatchRemove(integers);
+    }
+
+    @Override
+    public void registerAdd(String name, String tel, String id_card) {
+        patientMapper.registerAdd(name, tel, id_card);
     }
 }
