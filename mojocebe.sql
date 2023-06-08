@@ -84,6 +84,7 @@ DROP TABLE IF EXISTS `doctor`;
 CREATE TABLE `doctor` (
   `doctor_id` int(11) NOT NULL AUTO_INCREMENT,
   `doctor_name` varchar(50) DEFAULT NULL,
+  `dept_name` varchar(50) default null,
   PRIMARY KEY (`doctor_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -94,7 +95,7 @@ CREATE TABLE `doctor` (
 
 LOCK TABLES `doctor` WRITE;
 /*!40000 ALTER TABLE `doctor` DISABLE KEYS */;
-INSERT INTO `doctor` VALUES (1,'王医师'),(2,'陈大夫'),(3,'罗专家');
+INSERT INTO `doctor` VALUES (1,'王医师','骨科'),(2,'陈大夫','儿科'),(3,'罗专家','精神科');
 /*!40000 ALTER TABLE `doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 

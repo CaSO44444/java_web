@@ -7,6 +7,6 @@
         <result property="price" column="price"/>
     </resultMap>
     <select id="queryalldept" resultType="com.example.mojocebe.entity.Dept">
-        select dept_name,price from dept
+        select * from dept
     </select>
 </mapper>

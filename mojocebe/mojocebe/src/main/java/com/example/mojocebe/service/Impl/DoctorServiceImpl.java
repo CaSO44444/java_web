@@ -20,7 +20,7 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public void registerAdd(String name){
-        doctorMapper.registerAdd(name);
+    public void registerAdd(String name, String dept_name){
+        doctorMapper.registerAdd(name, dept_name);
     }
 }

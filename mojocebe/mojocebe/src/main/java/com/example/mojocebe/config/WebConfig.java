@@ -42,7 +42,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/user/**")
                 .excludePathPatterns("/checkToken")
                 .excludePathPatterns("/webmvc/**")
-                .excludePathPatterns("/common/**");
+                .excludePathPatterns("/common/**")
+                .excludePathPatterns("/dept/**");
         registry.addInterceptor(doctorInterceptor)
                 .addPathPatterns("/title/query");
         registry.addInterceptor(patientInterceptor)
